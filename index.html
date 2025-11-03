@@ -6,7 +6,7 @@
     </head>
     <body>
         <header class="header">
-            <span class="nav-icon"><i class="fa-solid fa-bars"></i></span><h1 class="logo">Mafika Mahlobo</h1>
+            <span class="nav-icon"><i class="fa-solid fa-bars"></i> <h1 class="logo">Mafika Mahlobo</h1></span>
             <nav class="desktop-nav">
                 <ul>
                     <li>About Me</li>
@@ -17,6 +17,14 @@
             </nav>
             <span class="resume-button">Resumè <i class="fa-solid fa-download"></i></span>
         </header>
+        <div class="mobile-nav">
+                <ul>
+                    <li>About Me</li>
+                    <li>Projects</li>
+                    <li>Skills</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
         <main>
             <section class="intro-section">
                 <div class="fade-in-section text-block" id="intro-text">
@@ -30,20 +38,134 @@
                 <h1>Bio</h1>
                 <img src="static/img/Me1.jpg" alt="Picture of Mafika Mahlobo" class="about-img">
                 <p>I'm a backend web developer passionate about using technology to solve real-world problems. My journey started with an IT support internship, where I gained foundational knowledge in the field and developed a strong interest in software development.
+                    <br><br>
                    Through work-integrated learning programs and coding bootcamps, I've worked on various software projects that strengthened my skills in Python, JavaScript, and backend development. These experiences also helped me grow in areas like problem-solving, communication, and time management.
+                    <br><br>
                    I’m a lifelong learner who thrives on continuous growth, always exploring new tools, improving my craft, and building solutions that make a difference.</p>
             </section>
             <button class="about-button"><span class="terminal-button"><b>See my portfolio</b><span class="cursor"></span></button>
             <section class="portfolio">
                 <h1>portfolio</h1>
                 <div class="project-card">
-                    <h3>Project 1</h3>
+                    <h3>Simple Survey</h3>
                     <div class="slide-container" id="slid1">
-                        <img src="static/img/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg" alt="Project 1 Image 1" class="slide-image">
-                        <img src="static/img/ashkan-forouzani-ylABpgjZLMk-unsplash.jpg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project1/p1.PNG" alt="Project 1 Image 1" class="slide-image">
+                        <img src="static/img/project1/p2.PNG" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project1/p3.PNG" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project1/p4.PNG" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project1/p5.PNG" alt="Project 1 Image 2" class="slide-image">
                     </div>
-                    <p>Description of Project1.</p>
+                    <p>A full-stack survey app with a form and live results section, built for a software development internship application at Tsimologong Precinct. It demonstrates CRUD functionality using HTML, CSS, JavaScript, Flask (Python), and MySQL.</p>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Live Demo</b><span class="cursor"></span></button>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Github Reposistory</b><span class="cursor"></span></button>
                 </div>
+                <div class="project-card">
+                    <h3>ShelfSync- Library Management System</h3>
+                    <div class="slide-container" id="slid1">
+                        <img src="static/img/project2/p1.png" alt="Project 1 Image 1" class="slide-image">
+                        <img src="static/img/project2/p2.png" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project2/p3.png" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project2/p4.png" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project2/p5.png" alt="Project 1 Image 2" class="slide-image">
+                    </div>
+                    <p>A web-based library system built with Flask, HTML, CSS, Bootstrap, jQuery, and Python. Currently a work in progress.</p>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Live Demo</b><span class="cursor"></span></button>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Github Reposistory</b><span class="cursor"></span></button>
+                </div>
+                <div class="project-card">
+                    <h3>Cargoflow - Delivery App</h3>
+                    <div class="slide-container" id="slid1">
+                        <img src="static/img/project3/p1.jpeg" alt="Project 1 Image 1" class="slide-image">
+                        <img src="static/img/project3/p2.jpeg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project3/p3.jpeg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project3/p4.jpeg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project3/p5.jpeg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project3/p6.jpeg" alt="Project 1 Image 2" class="slide-image">
+                        <img src="static/img/project3/p7.jpeg" alt="Project 1 Image 2" class="slide-image">
+                    </div>
+                    <p>A mobile app for booking item deliveries, built with React Native, Expo, and a Node.js backend. I contributed to the backend, developing the Express.js API and integrating MongoDB.</p>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Live Demo</b><span class="cursor"></span></button>
+                    <button class="about-button project-link"><span class="terminal-button"><b>Github Reposistory</b><span class="cursor"></span></button>
+                </div>
+            </section>
+            <section class="skills-section">
+                <h1>Skills</h1>
+                <section class="skills-sub-section">
+                    <p>Languages</p>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">Python</h3>
+                            <img src="static/icons/Python.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">JavaScript</h3>
+                            <img src="static/icons/JavaScript.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">HTML5</h3>
+                            <img src="static/icons/HTML5.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                        <h3 class="skills-title">CSS3</h3>
+                        <img src="static/icons/CSS3.svg" alt="">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="skills-sub-section">
+                    <p>Tools & Frameworks</p>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">Flask</h3>
+                            <img src="static/icons/Flask.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">Django</h3>
+                            <img src="static/icons/Django.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">MYSQL</h3>
+                            <img src="static/icons/MySQL.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                        <h3 class="skills-title">Git</h3>
+                        <img src="static/icons/Git.svg" alt="">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="skills-sub-section">
+                    <p>Testing & Debugging</p>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">Postman</h3>
+                            <img src="static/icons/Postman.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-card">
+                            <h3 class="skills-title">Chrome DevTools</h3>
+                            <img src="static/icons/Chrome.svg" alt="">
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+            <section class="contact-section">
+                <h1>Contact Me</h1>
+                <p>click here to reach me: </p><a href="mailto:rudolphmafika@gmail.com" class="mail-link"><i class="fa-solid fa-envelope"></i></a>
             </section>
         </main>
         <footer class="footer"> 
