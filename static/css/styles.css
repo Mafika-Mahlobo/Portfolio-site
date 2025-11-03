@@ -243,6 +243,39 @@ main section h1 {
     margin: 2em auto;
 }
 
+.project-card {
+    border: var(--borders);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 2rem;
+    width: 95%;
+    min-height: 30rem;
+    background-color: var(--body-light);
+    opacity: 0.9;
+    box-shadow: 0 4px 8px rgba(119, 111, 111, 0.1);
+}
+
+.project-card h3 {
+    font-size: var(--mid-text);
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    font-size: var(--small-text);
+    color: var(--text-color);
+}
+
+.project-card .slide-container img {
+    position: relative;
+    width: 100%;
+    min-height: 20rem;
+    display: none;
+    overflow: hidden;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* Media queries for Desktop */
 
 /* .header nav ul {
