@@ -74,6 +74,52 @@ body {
     z-index: 1;
 }
 
+.overly {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(54, 53, 53, 0.9);
+    min-height: 100%;
+    min-width: 100%;
+    z-index: 3;
+    display: none;
+    animation: all 3s ease-in
+}
+
+.pop-up {
+    background-color: rgba(31, 32, 32, 0.9);
+    min-width: 95vw;
+    min-height: auto;
+    margin: 3vw;
+    padding: .1vw;
+    border-radius: 4rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+
+.pop-up h1 {
+    font-size: 6rem;
+    padding: 5rem;
+    color: var(--header-background-color);
+}
+
+.pop-up button {
+    margin: 3rem;
+    color: #000000;
+    background-color: rgba(124, 163, 119, 0.9);
+    box-shadow: var(--box-shadow);
+    border: none;
+    cursor: pointer;
+}
+
+.pop-up .cancel {
+     background-color: rgba(63, 47, 47, 0.9);
+}
 
 .header .desktop-nav {
     display: none;  /* Hide Desktop menu */
@@ -105,6 +151,20 @@ body {
     border: var(--borders);
     border-radius: 1.5rem;
     box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.mobile-nav {
+    cursor: pointer;
+}
+
+.mobile-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.fa-xmark {
+    cursor: pointer;
 }
 
 main {
@@ -164,6 +224,17 @@ main section h1 {
       backdrop-filter: blur(3px);
 }
 
+.bio-info {
+    box-shadow: var(--box-shadow);
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.bio-info p {
+        font-size: 4.2rem;
+}
+
 .text-block:hover {
     transform: scale(1.02); /* Reduced scale to avoid overflow */
 }
@@ -187,6 +258,15 @@ main section h1 {
       vertical-align: bottom;
 }
 
+.project-link {
+    position: relative;
+    padding: 0;
+}
+
+#github-btn {
+    font-size: 4rem;
+}
+
 @keyframes blink {
       0%, 100% {
         opacity: 1;
@@ -200,7 +280,7 @@ main section h1 {
     padding: 5rem;
     text-align: center;
     background-color: var(--body-dark);
-    opacity: 0.6;
+    opacity: 0.8;
     border: var(--borders);
     border-radius: 2rem;
     padding: .1rem;
@@ -208,11 +288,19 @@ main section h1 {
     box-shadow: var(--box-shadow);
 }
 
+.about img {
+    width: 45rem;
+    height: 45rem;
+    border: var(--borders);
+    border-radius: 50%;
+    margin-top: 2rem;
+}
+
 .portfolio {
     padding: 5rem;
     text-align: center;
     background-color: var(--body-dark);
-    opacity: 0.6;
+    opacity: 0.8;
     border: var(--borders);
     border-radius: 2rem;
     padding: .1rem;
@@ -226,15 +314,6 @@ main section h1 {
     padding: 1rem;
     font-size: var(--x-small-text);
     color: var(--text-color);
-    box-shadow: var(--box-shadow);
-}
-
-.about img {
-    width: 30rem;
-    height: auto;
-    border: var(--borders);
-    border-radius: 2rem;
-    margin-top: 2rem;
     box-shadow: var(--box-shadow);
 }
 
@@ -301,7 +380,7 @@ main section h1 {
     padding: 5rem;
     text-align: center;
     background-color: var(--body-dark);
-    opacity: 0.6;
+    opacity: 0.8;
     border: var(--borders);
     border-radius: 2rem;
     padding: .1rem;
@@ -328,9 +407,13 @@ main section h1 {
 }
 
 .skill-card img {
-    width: 15rem;
-    height: 15rem;
+    width: 13rem;
+    height: auto;
     margin: 1rem;
+}
+
+.skill-card h3 {
+    font-size: 4rem;
 }
 
 
@@ -338,7 +421,7 @@ main section h1 {
     padding: 5rem;
     text-align: center;
     background-color: var(--body-dark);
-    opacity: 0.6;
+    opacity: 0.8;
     border: var(--borders);
     border-radius: 2rem;
     padding: .1rem;
@@ -346,9 +429,16 @@ main section h1 {
     box-shadow: var(--box-shadow);
 }
 
-.mail-link {
+.contact-container {
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.contact-section a {
     color: var(--text-color);
-    font-size: var(--mid-text);
+    font-size: 15rem;
     text-decoration: none;
     margin: 0 1rem;
 }
@@ -409,12 +499,124 @@ nav li {
     color: var(--text-color);
 }
 
+.footer a {
+    color: var(--text-color);
+}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      p {
-        font-size: 1rem;
-      }
+@media (min-width: 422px){
+    .skills {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
     }
+
+    .skills section {
+        flex: 1;
+    }
+}
+
+
+@media (min-width: 433px){
+    .logo{
+        display: none;
+    }
+
+    .resume-button {
+        font-size: 10rem;
+    }
+
+    .fa-download {
+        font-size: 4rem;
+    }
+
+    .header .nav-icon {
+        display: none;
+    }
+
+    .header .desktop-nav {
+        display: block;
+        color: var(--heading-color);
+        width: 80%;
+        margin-right: 0;
+        opacity: .6;
+        margin: .8rem;
+        padding-right: 2rem;
+    }
+
+    .header .desktop-nav li {
+        font-size: var(--small-text);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .header .desktop-nav li:hover {
+        background-color: rgba(200, 200, 200, 1);
+        border-radius: 4rem;
+        transform: scale(.9);
+    }
+
+    .slide-container img {
+        max-height: 45rem;
+    }
+
+    .project-card{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 90rem;
+        max-height: 100rem;
+    }
+
+    .portfolio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-section h1 {
+        font-size: 5rem;
+    }
+
+    .contact-section p {
+        font-size: 5rem;
+    }
+
+
+}
+
+@media (min-width: 784px){
+     .project-card{
+        max-width: 90rem;
+        max-height: 140rem;
+    }
+
+    .portfolios {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* .portfolio h1 {
+        display: none;
+    } */
+
+    .bio-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .bio-info p {
+        font-size: 5rem;
+        border-left: var(--borders);
+        margin-bottom: 2rem;
+        padding: .5rem;
+    }
+
+    .bio-info img {
+        margin: 4rem;
+        margin-top: 0;
+    }
+}
