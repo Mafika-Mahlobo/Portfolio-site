@@ -11,6 +11,11 @@ const userSchecma = new mongoose.Schema({
         required: true
     },
 
+    password: {
+        type: String,
+        required: true
+    },
+
     hero: {
         type: String,
     },
@@ -21,8 +26,12 @@ const userSchecma = new mongoose.Schema({
     },
 
     profile_pic: {
-        type: String,
-        required: true
+        url: {
+            type: String,
+        },
+        public_id: {
+            type: String
+        }
     }
 });
 
