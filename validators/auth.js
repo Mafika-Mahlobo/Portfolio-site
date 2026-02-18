@@ -9,7 +9,7 @@ exports.auth = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, config.get('jwtSecret'));
-        res.id = decoded.id;
+        req.id = decoded.id;
         next()
 
     } catch (error) {

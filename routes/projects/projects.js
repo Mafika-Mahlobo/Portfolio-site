@@ -2,6 +2,9 @@ const express = require('express');
 
 const router =  express.Router();
 
+// @route POST /api/projects
+// @desc Add project
+// @access private
 router.post('/', (req, res) => {
     res.json({msg: 'Add project'});
 });
