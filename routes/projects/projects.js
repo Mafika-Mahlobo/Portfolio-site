@@ -1,24 +1,41 @@
 const express = require('express');
+const projectsChecks = require('../../validators/projectsChecks');
+const validate = require('../../validators/validate');
+const multer = require('multer');
+const { AddProject, updateProject, getProjects, getProjectById, deleteProject } = require('../../controllers/projects');
+const { auth } = require('../../validators/auth')
+
 
 const router =  express.Router();
+const upload = multer({storage: multer.memoryStorage()});
 
 // @route POST /api/projects
 // @desc Add project
 // @access private
-router.post('/', (req, res) => {
-    res.json({msg: 'Add project'});
-});
+router.post('/', auth, upload.array('project-pics', 7),
+    projectsChecks, validate, AddProject);
 
-router.put('/:id', (req, res) => {
-    res.json({msg: 'Update project'})
-})
 
-router.get('/', (req, res) => {
-    res.json({msg: 'Get all projects'});
-});
+// @route PUT /api/projects/:id
+// @desc Update project
+// @access private
+router.put('/:id', auth, upload.array('project-pics', 7),
+    projectsChecks, validate, updateProject);
 
-router.get('/:id', (req, res) => {
-    res.json({msg: 'Get project by ID'});
-});
+// @route GET /api/projects
+// @desc Get all projects
+// @access public
+router.get('/all/:userId', getProjects);
+
+// @route GET /api/projects
+// @desc Get project by ID
+// @access public
+router.get('/:id', getProjectById);
+
+
+// @route DELETE /api/projects
+// @desc Delete project
+// @access public
+router.delete('/:id', auth, deleteProject);
 
 module.exports = router;

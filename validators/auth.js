@@ -5,7 +5,7 @@ const config = require('config')
 exports.auth = (req, res, next) => {
     const token = req.header('auth-token');
 
-    if (!token) return res.status(400).json({msg: 'Access denied'});
+    if (!token) return res.status(401).json({msg: 'Access denied'});
 
     try {
         const decoded = jwt.verify(token, config.get('jwtSecret'));
@@ -13,6 +13,6 @@ exports.auth = (req, res, next) => {
         next()
 
     } catch (error) {
-        res.status(401).json({msg: 'Access denied'})
+        return res.status(401).json({msg: 'Access denied'})
     }
 }
