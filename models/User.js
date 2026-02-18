@@ -17,15 +17,23 @@ const userSchecma = new mongoose.Schema({
     },
 
     hero: {
-        type: String,
+        type: String
     },
 
     bio: {
-        type: String,
-        required: true
+        type: String
     },
 
     profile_pic: {
+        url: {
+            type: String,
+        },
+        public_id: {
+            type: String
+        }
+    },
+
+    resume: {
         url: {
             type: String,
         },

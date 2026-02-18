@@ -13,12 +13,12 @@ const router = express.Router()
 // @route POST /api/auth/register
 // @desc Add user to the database
 // @access public
-router.post('/register', upload.single('profile-pic'), registerChecks, validate, addUser);
+router.post('/register', registerChecks, validate, addUser);
 
 
 // @route POST /api/auth/login
 // @desc User login
 // @access public
-router.post('/login', upload.array('project-pics', 6), loginChecks, validate, login);
+router.post('/login', loginChecks, validate, login);
 
 module.exports = router;

@@ -6,9 +6,7 @@ const { issueToken } = require('./jwt');
 // Add user
 exports.addUser = async (req, res) => {
 
-    const { name, email, password, hero, bio } = req.body;
-    let fileData;
-    let pictureInfo;
+    const { name, email, password } = req.body;
 
     try {
         // get user
@@ -23,29 +21,11 @@ exports.addUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // check upload
-        if (req.file) {
-
-            // upload picture
-            fileData = await uploadFile(req.file.buffer, 'Portfolio/profile');
-
-            //check upload
-            if (fileData) {
-                pictureInfo = {
-                    url: fileData.secure_url,
-                    public_id: fileData.public_id
-                };
-            } 
-        }
-
         // cleate user
         const newUser = new User({
             name: name,
             email: email,
             password: hashedPassword,
-            hero: hero,
-            bio: bio,
-            profile_pic: pictureInfo
         });
 
         // save user
