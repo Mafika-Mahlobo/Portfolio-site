@@ -1,26 +1,23 @@
 const express = require('express');
 const projectsChecks = require('../../validators/projectsChecks');
 const validate = require('../../validators/validate');
-const multer = require('multer');
 const { AddProject, updateProject, getProjects, getProjectById, deleteProject } = require('../../controllers/projects');
 const { auth } = require('../../validators/auth')
+const { projectUploadMiddleware } = require('../../controllers/fileUpload/multerUploader')
 
 
 const router =  express.Router();
-const upload = multer({storage: multer.memoryStorage()});
 
 // @route POST /api/projects
 // @desc Add project
 // @access private
-router.post('/', auth, upload.array('project-pics', 7),
-    projectsChecks, validate, AddProject);
+router.post('/', auth, projectUploadMiddleware, projectsChecks, validate, AddProject);
 
 
 // @route PUT /api/projects/:id
 // @desc Update project
 // @access private
-router.put('/:id', auth, upload.array('project-pics', 7),
-    projectsChecks, validate, updateProject);
+router.put('/:id', auth, projectUploadMiddleware, projectsChecks, validate, updateProject);
 
 // @route GET /api/projects
 // @desc Get all projects
