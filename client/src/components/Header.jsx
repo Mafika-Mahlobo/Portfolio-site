@@ -6,7 +6,7 @@ import { CodeBracketIcon } from '@heroicons/react/24/solid';
 
 const Header = () => {
   return (
-    <div className="flex justify-between p-8 text-gray-50 italic font-extralight sticky sm:text-lg text-sm bg-gradient-to-b from-gray-800 to-gray-900">
+    <div className="flex justify-between p-8 text-gray-50 italic font-extralight sticky sm:text-lg text-sm bg-linear-to-b from-gray-800 to-gray-900">
         <p className='p-5 text-lg'><CodeBracketIcon className='text-gray-50 cursor-pointer inline font-bold h-10 w-10 hover:text-green-900
         transition-all'/>{'   '}Mafika Mahlobo</p>
         <ul className='list-none hidden sm:flex'>
