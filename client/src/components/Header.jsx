@@ -7,8 +7,9 @@ import { CodeBracketIcon } from '@heroicons/react/24/solid';
 const Header = () => {
   return (
     <div className="flex justify-between p-8 text-gray-50 italic font-extralight sticky sm:text-lg text-sm bg-linear-to-b from-gray-800 to-gray-900">
-        <p className='p-5 text-lg'><CodeBracketIcon className='text-gray-50 cursor-pointer inline font-bold h-10 w-10 hover:text-green-900
-        transition-all'/>{'   '}Mafika Mahlobo</p>
+      <div className='p-1'><CodeBracketIcon className='text-gray-50 cursor-pointer inline font-bold h-10 w-10 hover:text-green-900
+        transition-all'/><p className='p-5 text-lg hidden sm:inline-block'>{'   '}Mafika Mahlobo</p></div>
+        
         <ul className='list-none hidden sm:flex'>
           <li className='p-5 cursor-pointer text-center hover:border-b hover:border-green-600 hover:text-green-900 hover:font-bold transition-all'>Home</li>
           <li className='p-5 cursor-pointer text-center hover:border-b  hover:border-green-600 hover:text-green-900 hover:font-bold transition-all'>Profolio</li>

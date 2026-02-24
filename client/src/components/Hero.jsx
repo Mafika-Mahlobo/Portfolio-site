@@ -33,12 +33,12 @@ const Hero = () => {
             </div>
             <section className="flex justify-center overflow-hidden bg-gray-600 p-0 shadow-5xl shadow-grey-900">
                 <ul className='flex justify-center text-2xl md:text-3xl animate-pulse text-gray-900'>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-js"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-node"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-react"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-python"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-html5"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i class="fa-brands fa-css3-alt"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-js"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-node"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-react"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-python"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-html5"></i></li>
+                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-css3-alt"></i></li>
                 </ul>
             </section>
                 
