@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { Bars3BottomLeftIcon } from '@heroicons/react/24/outline'
 import { CodeBracketIcon } from '@heroicons/react/24/solid';
+import useIntersectionObserver from './useIntersectionObserver';
 
 
 
 const Header = () => {
   const [ isMenuVisible, setMenuIsVisible ] = useState(false);
+  const { ref, isVisible } = useIntersectionObserver({threshold: 0.3,});
 
   const toogleMenu = () => {
     setMenuIsVisible(!isMenuVisible);
   }
 
   return (
-    <div className="flex justify-between p-8 text-gray-50 italic font-extralight sticky sm:text-lg text-sm bg-linear-to-b from-gray-800 to-gray-900">
+    <div ref={ref} className={`flex justify-between p-8 text-gray-50 italic font-extralight sticky sm:text-lg text-sm bg-linear-to-b from-gray-800 to-gray-900 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-50'}`}>
       <div className='p-1'><CodeBracketIcon className='text-gray-50 cursor-pointer inline font-bold h-10 w-10 hover:text-green-900
         transition-all'/><p className='p-5 text-lg hidden sm:inline-block'>{'   '}Mafika Mahlobo</p></div>
         

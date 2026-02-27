@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
-import image2 from '../assets/profile-pic.png'
+import React, { useEffect } from 'react';
+import image2 from '../assets/profile-pic.png';
+import useIntersectionObserver from './useIntersectionObserver';
 
 const Hero = () => {
     const [ isTitleDev, setIsTitleDev ] = React.useState(true);
+    const { ref, isVisible } = useIntersectionObserver({threshold: 0.3})
 
     useEffect(() => {
         const titleInterval = setInterval(() => {
@@ -14,7 +16,7 @@ const Hero = () => {
 
     
     return (
-        <section className="bg-linear-to-b from-gray-900 to-gray-600 text-gray-400 overflow-hidden justify-center p-0 m-0">
+        <section ref={ref} className={`bg-linear-to-b from-gray-900 to-gray-600 text-gray-400 overflow-hidden justify-center p-0 m-0 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-50'}`}>
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-12 items-start min-h-fit p-5 m-0">
                 <div className="flex flex-col items-stretch gap-y-5 p-5 m-0">
                     <h3 className="text-2xl p-0 m-0 ">Welcome to my portfolio<li className='text-5xl text-green-700 font-extralight inline'>.</li></h3>
