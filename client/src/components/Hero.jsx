@@ -22,7 +22,7 @@ const Hero = () => {
                     <p className="text-gray-300 max-w-xl">I build responsive, accessible web interfaces and delightful user experiences. Passionate about clean code and design.</p>
 
                     <div className="container flex gap-x-4 justify-around sm:justify-start">
-                        <button className="mt-2 inline-flex items-center px-4 py-2 hover:bg-gray-900 bg-green-900 text-green-70 border border-green-900  font-semibold rounded-md shadow-3xl shadow-gray-800 transition cursor-pointer">Download resumé</button>
+                        <button className="mt-2 inline-flex items-center px-4 py-2 hover:bg-gray-900 duration-800 bg-green-700 text-gray-300 border border-green-900  font-semibold rounded-md shadow-3xl shadow-gray-800 transition cursor-pointer">Download resumé</button>
                     </div>
                 </div>
 

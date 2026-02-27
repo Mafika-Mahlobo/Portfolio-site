@@ -6,7 +6,7 @@ const Footer = () => {
         <ul className='flex flex-row'>
             <a href="" ><li><i className="fa-brands fa-linkedin text-3xl text-gray-400 px-5"></i></li></a>
             <a href=""><li><i className="fa-brands fa-github text-3xl text-gray-400 px-5"></i></li></a>
-            <a href=""><li><i class="fa-solid fa-envelope text-3xl text-gray-400 px-5"></i></li></a>
+            <a href=""><li><i className="fa-solid fa-envelope text-3xl text-gray-400 px-5"></i></li></a>
         </ul>
     </section>
   )
