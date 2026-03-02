@@ -1,7 +1,7 @@
-const { json } = require('express');
 const User = require('../models/User');
 const { uploadFile } = require('./fileUpload/fileUpload');
 const { deleteFile } = require('./fileUpload/deleteFile');
+const cloudinary =  require('./fileUpload/cloudinaryConfig');
 const bcrypt = require('bcryptjs');
 
 
@@ -26,7 +26,7 @@ exports.addProfile = async (req, res) => {
         if (user.resume?.url) {
 
             // delete old resume
-            await deleteFile(user.resume.public_id);
+            await deleteFile(user.resume.public_id, 'raw');
         }
 
         // check profile picture uploads
@@ -44,7 +44,8 @@ exports.addProfile = async (req, res) => {
         if (resume) {
 
             // upload resume
-            const resumeData = await uploadFile(resume.buffer, 'Portfolio/profile');
+            const resumeData = await uploadFile(resume.buffer, 'Portfolio/profile', "raw");
+
             resume = {
                 url: resumeData.secure_url,
                 public_id: resumeData.public_id
@@ -79,5 +80,20 @@ exports.addProfile = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({msg: error.message});
+    }
+}
+
+exports.getUserProfile = async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        
+        const profile = await User.findById({_id: userId});
+
+        if (!profile) return res.status(200).json({msg: 'User profile not found'})
+        return res.status(200).json(profile);
+
+    } catch (error) {
+        return res.status(500).json({msg: 'User profile not found'});
     }
 }

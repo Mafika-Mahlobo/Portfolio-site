@@ -1,5 +1,5 @@
 const express = require('express');
-const { addProfile } = require('../../controllers/profile');
+const { addProfile, getUserProfile } = require('../../controllers/profile');
 const profileChecks = require('../../validators/profileChecks');
 const validate = require('../../validators/validate');
 const { auth } = require('../../validators/auth');
@@ -11,5 +11,10 @@ const router = express.Router();
 // @desc Add and/or update user profile
 // @access private
 router.put('/', auth, profileUploadMiddleware, profileChecks, validate, addProfile);
+
+// @route GET /api/users/id
+// @desc Get user profile
+// @access public
+router.get('/:id', getUserProfile);
 
 module.exports = router;

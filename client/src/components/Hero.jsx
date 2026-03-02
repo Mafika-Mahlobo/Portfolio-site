@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import image2 from '../assets/profile-pic.png';
 import useIntersectionObserver from './useIntersectionObserver';
 
-const Hero = () => {
+const Hero = ({name, hero, resume}) => {
     const [ isTitleDev, setIsTitleDev ] = React.useState(true);
     const { ref, isVisible } = useIntersectionObserver({threshold: 0.3})
 
@@ -14,17 +14,44 @@ const Hero = () => {
         return () => clearInterval(titleInterval);
     }, []);
 
+    const downloadResume = async (url) => {
+        if (!url) {
+            alert('Resume not found!');
+            return
+        }
+
+        if (!window.confirm("You are about to download a file")) return
+
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = 'Mafika_Mahlbo_CV.pdf';
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(blobUrl);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     
     return (
         <section id='home' ref={ref} className={`bg-linear-to-b from-gray-900 to-gray-600 text-gray-400 overflow-hidden justify-center p-0 m-0 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-50'}`}>
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-12 items-start min-h-fit p-5 m-0">
                 <div className="flex flex-col items-stretch gap-y-5 p-5 m-0">
                     <h3 className="text-2xl p-0 m-0 ">Welcome to my portfolio<li className='text-5xl text-green-700 font-extralight inline'>.</li></h3>
-                    <h1 className={`text-3xl sm:text-4xl font-extrabold transition-all duration-900 ${!isTitleDev ? 'underline underline-offset-10 style decoration-green-700 decoration-1': 'text-gray-400'}`}>{isTitleDev ? "Mafika Mahlobo" : "Web Developer"}</h1>
-                    <p className="text-gray-300 max-w-xl">I build responsive, accessible web interfaces and delightful user experiences. Passionate about clean code and design.</p>
+                    <h1 className={`text-3xl sm:text-4xl font-extrabold transition-all duration-900 ${!isTitleDev ? 'underline underline-offset-10 style decoration-green-700 decoration-1': 'text-gray-400'}`}>{isTitleDev ? name : "Web Developer"}</h1>
+                    <p className="text-gray-300 max-w-xl">{hero}</p>
 
                     <div className="container flex gap-x-4 justify-around sm:justify-start">
-                        <button className="mt-2 inline-flex items-center px-4 py-2 hover:bg-gray-900 duration-800 bg-green-700 text-gray-300 border border-green-900  font-semibold rounded-md shadow-3xl shadow-gray-800 transition cursor-pointer">Download resumé</button>
+                        <button onClick={() => downloadResume(resume)} className="mt-2 inline-flex items-center px-4 py-2 hover:bg-gray-900 duration-800 bg-green-700 text-gray-300 border border-green-900  font-semibold rounded-md shadow-3xl shadow-gray-800 transition cursor-pointer">Download resumé</button>
                     </div>
                 </div>
 

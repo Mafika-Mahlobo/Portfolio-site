@@ -8,7 +8,7 @@ const profileChecks = [
     check('password', 'Password field is required').notEmpty(),
     check('password', 'Password does not meet security requirements').isStrongPassword(),
     check('hero', 'Hero section is required').notEmpty(),
-    check('hero', 'You exceeded allowed maximum character count').isLength({max: 55}),
+    check('hero', 'You exceeded allowed maximum character count').isLength({max: 100}),
     check('bio', 'Bio section is required').notEmpty(),
     check('bio', 'You exceeded allowed maximum character count').isLength({max: 55})
 ];
