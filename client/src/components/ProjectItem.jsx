@@ -1,0 +1,57 @@
+import { useEffect, useState } from 'react';
+
+const ProjectItem = ({ title, description, git, live, pictures}) => {
+     
+    const [ currentIndex, setCurrentIndex ] = useState(0);
+
+    const nextImage = () => {
+            setCurrentIndex((prev) => prev === pictures.length - 1 ? 0 : prev + 1);
+        };
+
+    useEffect(() => {
+        setInterval(() => {
+            nextImage();
+        }, 4000);
+    }, []);
+
+    // const prevImage = () => {
+    //     setCurrentIndex((prev) => {
+    //         currentIdex === 0 ? pictures.length - 1 : prev - 1;
+    //     })
+    // }
+     
+
+  return (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 rounded-3xl shadow-lg shadow-gray-900 bg-transparent border border-gray-500 mt-5 w-full">
+            <div className='flex flex-col justify-center items-center p-0'>
+                <h2 className='text-center text-gray-400 text-2xl font-extrabold mb-4'>{title}</h2>
+                <img src={pictures[currentIndex]?.url} alt="Project screenshot" className='w-full h-auto max-h-80 object-center p-0 m-2 sm:m-6 rounded-2xl shadow-4xl shadow-gray-900'/>
+            </div>
+            <div className='rounded-tr-3xl rounded-br-3xl shadow-2xl shadow-gray-900 p-6 sm:p-10 text-center w-full h-full flex flex-col justify-center items-center'>
+                <p className='text-gray-400 max-w-prose px-2 sm:px-6'>
+                   {description}
+                </p>
+                <div className='flex flex-col sm:flex-row justify-center items-center gap-3 mt-5 w-full sm:w-auto'>
+                    {live ? 
+                    
+                        <a href={live} target='_blank'>
+                            <button className='bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition-colors duration-300 m-2 w-full sm:w-auto cursor-pointer'>Live demo</button>
+                        </a>
+                        :
+                        ''
+                    }
+
+                    {git ? 
+                        <a href={git} target='_blank'>
+                            <button className='bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300 m-2 w-full sm:w-auto cursor-pointer'>Git repository</button>
+                        </a>
+                        :
+                        ''
+                    }
+                </div>
+            </div>
+        </div> 
+  )
+}
+
+export default ProjectItem;

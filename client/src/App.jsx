@@ -10,7 +10,7 @@ import axios from 'axios'
 
 function App() {
   const [ user, setUser ] = useState(null);
-  let name, bio , hero, resume;
+  let name, bio , hero, resume, profilePicture;
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -48,15 +48,17 @@ function App() {
   if (user) {
     name = user.name;
     hero = user.hero;
-    resume =  user.resume ? user.resume.url : null
+    resume =  user.resume ? user.resume.url : null;
+    profilePicture = user.profile_pic ? user.profile_pic.url : null;
+    bio = user.bio;
   }
 
   return (
     <Fragment>
       <Header />
-      <Hero name={name} hero={hero} resume={resume}/>
+      <Hero name={name} hero={hero} resume={resume} profilePicture={profilePicture}/>
       <Projects />
-      <Contact />
+      <Contact bio={bio}/>
       <Footer />
     </Fragment>
   )

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import image2 from '../assets/profile-pic.png';
 import useIntersectionObserver from './useIntersectionObserver';
 
-const Hero = ({name, hero, resume}) => {
+const Hero = ({name, hero, resume, profilePicture}) => {
     const [ isTitleDev, setIsTitleDev ] = React.useState(true);
     const { ref, isVisible } = useIntersectionObserver({threshold: 0.3})
 
@@ -56,7 +55,7 @@ const Hero = ({name, hero, resume}) => {
                 </div>
 
                 <div className="flex h-full w-full p-1 justify-center items-center">
-                    <img src={image2} alt="Profile" className="justify-self-center w-60 h-60 sm:w-80 sm:h-80 rounded-full object-cover bg-linear-to-b from-gray-800 to-gray-900 shadow-sm shadow-green-900" />
+                    <img src={profilePicture} alt="Profile" className="justify-self-center w-60 h-60 sm:w-80 sm:h-80 rounded-full object-cover bg-linear-to-b from-gray-800 to-gray-900 shadow-sm shadow-green-900" />
 
                 </div>
             </div>
