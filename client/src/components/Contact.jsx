@@ -2,6 +2,7 @@ import React from 'react';
 import useIntersectionObserver from './useIntersectionObserver';
 import { useState } from 'react';
 import axios from 'axios';
+import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 
 const Contact = ({bio}) => {
 
@@ -9,9 +10,12 @@ const Contact = ({bio}) => {
 
     const [ subject, setSubject ] = useState('');
     const [ text, setText ] = useState('');
+    const [ loading, setLoading ] = useState(false);
 
     const submitMessage = async (e) => {
         e.preventDefault();
+
+         setLoading(true);
 
         const config = {
             headers: {
@@ -22,25 +26,33 @@ const Contact = ({bio}) => {
         try {
             const res = await axios.post('http://127.0.0.1:5000/api/contact', {title: subject, message: text}, config);
             alert(res.data.msg);
+           
             
         } catch (error) {
             console.log(error.message);
+        } finally {
+            setLoading(false);
         }
+        
         setSubject('');
         setText('');
     }
 
 
   return (
-    <section id='contact' ref={ref} className={`bg-linear-to-br from-gray-800 to-gray-700 p-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-50'}`}>
+    <section id='contact' ref={ref} className={`bg-linear-to-br from-gray-800 to-gray-700 p-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
         <div className='grid grid-cols-1 md:grid-cols-2 border border-gray-500 rounded-2xl shadow-2xl shadow-gray-900 p-10'>
             <div className='p-2 sm:p-10'>
-                <p className='text-center text-gray-400'>
+                <p className='text-center text-gray-300 text-lg'>
                     {bio}
                 </p>
             </div>
             <div className='rounded-tr-2xl rounded-br-2xl shadow-2xl shadow-gray-900 flex justify-center align-middle p-0 md:p-10'>
-                <form onSubmit={(e) => submitMessage(e)} className='text-gray-300 flex flex-col p-2 md:p-0 gap-4 w-full'>
+                <div className={`w-max bg-green-900 p-15 m-10 items-center justify-center rounded-2xl animate-bounce text-gray-300 ${loading ? '': 'hidden'}`}>
+                    <RocketLaunchIcon className='animate-pulse'/>
+                     <h1 className="animate-pulse">{'Sending...'}</h1>
+                </div>
+                <form onSubmit={(e) => submitMessage(e)} className={`text-gray-300 flex flex-col p-2 md:p-0 gap-4 w-full ${loading ? 'hidden' : ''}`}>
                     <div className='w-full'>
                         <label htmlFor="title" className='block text-sm font-medium text-gray-200 mb-1'>Title</label>
                         <input onChange={(e) => setSubject(e.target.value)} value={subject} required className='w-full px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600' type="text" id='title' placeholder='Message title...'/>

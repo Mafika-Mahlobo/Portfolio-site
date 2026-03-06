@@ -24,7 +24,7 @@ const Projects = () => {
     }, []);
   
   return (
-    <section id='projects' ref={ref}  className={`bg-linear-to-b from-gray-600 to-gray-800 p-4 md:p-6 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-50'}`}>
+    <section id='projects' ref={ref}  className={`bg-linear-to-b from-gray-600 to-gray-800 p-4 md:p-6 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
       <h1 className='text-center text-3xl md:text-4xl text-gray-300 font-bold p-5 py-8 underline underline-offset-8 decoration-green-700 decoration-2'>Projects</h1>
       {
             projects.map(project => (

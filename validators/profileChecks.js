@@ -10,7 +10,7 @@ const profileChecks = [
     check('hero', 'Hero section is required').notEmpty(),
     check('hero', 'You exceeded allowed maximum character count').isLength({max: 100}),
     check('bio', 'Bio section is required').notEmpty(),
-    check('bio', 'You exceeded allowed maximum character count').isLength({max: 55})
+    check('bio', 'You exceeded allowed maximum character count').isLength({max: 500})
 ];
 
 module.exports = profileChecks;
