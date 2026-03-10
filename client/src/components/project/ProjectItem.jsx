@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ProjectItem = ({ title, description, git, live, pictures}) => {
+const ProjectItem = ({ title, description, git, live, pictures, index}) => {
      
     const [ currentIndex, setCurrentIndex ] = useState(0);
 
@@ -13,16 +13,10 @@ const ProjectItem = ({ title, description, git, live, pictures}) => {
             nextImage();
         }, 4000);
     }, []);
-
-    // const prevImage = () => {
-    //     setCurrentIndex((prev) => {
-    //         currentIdex === 0 ? pictures.length - 1 : prev - 1;
-    //     })
-    // }
      
 
   return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 rounded-3xl shadow-lg shadow-gray-900 bg-transparent border border-gray-500 mt-5 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 rounded-3xl shadow-lg shadow-gray-900 bg-transparent border border-gray-500 mt-5 max-w-7xl">
             <div className='flex flex-col justify-center items-center p-0'>
                 <h2 className='text-center text-gray-400 text-2xl font-extrabold mb-4'>{title}</h2>
                 <img src={pictures[currentIndex]?.url} alt="Project screenshot" className='w-min h-max max-h-80 max-w-full object-center p-0 m-2 sm:m-6 rounded-2xl shadow-4xl shadow-gray-900'/>

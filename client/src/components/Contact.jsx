@@ -43,12 +43,12 @@ const Contact = ({bio}) => {
     <section id='contact' ref={ref} className={`bg-linear-to-br from-gray-800 to-gray-700 p-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
         <div className='grid grid-cols-1 md:grid-cols-2 border border-gray-500 rounded-2xl shadow-2xl shadow-gray-900 p-10'>
             <div className='p-2 sm:p-10'>
-                <p className='text-center text-gray-300 text-lg'>
+                <p className='text-center text-gray-300 text-md md:text-lg'>
                     {bio}
                 </p>
             </div>
             <div className='rounded-tr-2xl rounded-br-2xl shadow-2xl shadow-gray-900 flex justify-center align-middle p-0 md:p-10'>
-                <div className={`w-max bg-green-900 p-15 m-10 items-center justify-center rounded-2xl animate-bounce text-gray-300 ${loading ? '': 'hidden'}`}>
+                <div className={`w-max bg-green-900 p-5 md:p-15 m-10 items-center justify-center rounded-2xl md:animate-bounce text-gray-300 ${loading ? '': 'hidden'}`}>
                     <RocketLaunchIcon className='animate-pulse'/>
                      <h1 className="animate-pulse">{'Sending...'}</h1>
                 </div>

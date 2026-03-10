@@ -6,6 +6,10 @@ import Contact from './components/Contact'
 import Footer from './components/Footer';
 import Lenis from 'lenis'
 import axios from 'axios'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Login from './components/auth/Login'
+import PrivateRoute from './Routing/PrivateRoute'
+import Admin from './components/Admin'
 
 
 function App() {
@@ -54,13 +58,27 @@ function App() {
   }
 
   return (
-    <Fragment>
-      <Header />
-      <Hero name={name} hero={hero} resume={resume} profilePicture={profilePicture}/>
-      <Projects />
-      <Contact bio={bio}/>
-      <Footer />
-    </Fragment>
+    <Router>
+      <Fragment>
+        <Routes>
+          
+            <Route path='/' element={
+              <>
+                <Header />
+                <Hero name={name} hero={hero} resume={resume} profilePicture={profilePicture}/>
+                <Projects />
+                <Contact bio={bio}/>
+                <Footer />
+              </>
+              } />
+
+            <Route path='/login' element={<Login />} />
+            <Route element={<PrivateRoute />}>
+                <Route path='/admin' element={<Admin />} />
+            </Route>
+       </Routes>
+      </Fragment> 
+    </Router>  
   )
 }
 

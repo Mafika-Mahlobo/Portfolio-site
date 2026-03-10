@@ -4,7 +4,7 @@ const { deleteFile } = require('./fileUpload/deleteFile');
 const cloudinary =  require('./fileUpload/cloudinaryConfig');
 const bcrypt = require('bcryptjs');
 
-
+// Add or update user profile
 exports.addProfile = async (req, res) => {
     const { name, email, password, hero, bio } = req.body;
     let profilePic = req.files?.['profile-pic']?.[0];
@@ -83,12 +83,28 @@ exports.addProfile = async (req, res) => {
     }
 }
 
+//Get user profile by ID
 exports.getUserProfile = async (req, res) => {
     const userId = req.params.id;
 
     try {
         
         const profile = await User.findById({_id: userId});
+
+        if (!profile) return res.status(200).json({msg: 'User profile not found'})
+        return res.status(200).json(profile);
+
+    } catch (error) {
+        return res.status(500).json({msg: 'User profile not found'});
+    }
+}
+
+//Get currently logged-in user
+exports.getUser = async (req, res) => {
+    const id = req.id;
+
+    try {
+        const profile = await User.findById({_id: id}).select('-password')
 
         if (!profile) return res.status(200).json({msg: 'User profile not found'})
         return res.status(200).json(profile);

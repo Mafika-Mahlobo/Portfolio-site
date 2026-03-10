@@ -42,11 +42,11 @@ const Hero = ({name, hero, resume, profilePicture}) => {
 
     
     return (
-        <section id='home' ref={ref} className={`bg-linear-to-b from-gray-900 to-gray-600 text-gray-400 overflow-hidden justify-center p-0 m-0 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
+        <section id='home' ref={ref} className={`bg-linear-to-b from-gray-500 to-gray-800 text-gray-900 overflow-hidden justify-center p-0 m-0 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-12 items-start min-h-fit p-5 m-0">
                 <div className="flex flex-col items-stretch gap-y-5 p-5 m-0">
-                    <h3 className="text-2xl p-0 m-0 ">Welcome to my portfolio<li className='text-5xl text-green-700 font-extralight inline'>.</li></h3>
-                    <h1 className={`text-3xl sm:text-4xl font-extrabold transition-all duration-900 ${!isTitleDev ? 'underline underline-offset-10 decoration-green-700 decoration-1': 'text-gray-400'}`}>{isTitleDev ? name : "Web Developer"}</h1>
+                    <h3 className="text-2xl p-0 m-0 text-gray-200">Welcome to my portfolio<li className='text-5xl text-green-900 font-extralight inline'>.</li></h3>
+                    <h1 className={`text-3xl sm:text-4xl font-extrabold transition-all duration-900 text-gray-300 ${!isTitleDev ? 'underline underline-offset-10 decoration-green-700 decoration-1': ''}`}>{isTitleDev ? name : "Web Developer"}</h1>
                     <p className="text-gray-300 max-w-xl">{hero}</p>
 
                     <div className="container flex gap-x-4 justify-around sm:justify-start">
@@ -55,7 +55,7 @@ const Hero = ({name, hero, resume, profilePicture}) => {
                 </div>
 
                 <div className="flex h-full w-full p-1 justify-center items-center">
-                    <img src={profilePicture} alt="Profile" className="justify-self-center w-48 h-48 sm:w-80 sm:h-80 rounded-full object-cover bg-linear-to-b from-gray-800 to-gray-900 shadow-sm shadow-green-900" />
+                    <img src={profilePicture} alt="Profile" className="justify-self-center w-48 h-48 md:w-80 md:h-80 rounded-full object-cover bg-linear-to-b from-gray-800 to-gray-900 shadow-sm shadow-green-900" />
 
                 </div>
             </div>
