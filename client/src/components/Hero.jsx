@@ -59,17 +59,37 @@ const Hero = ({name, hero, resume, profilePicture}) => {
 
                 </div>
             </div>
-            <section className="flex justify-center overflow-hidden bg-gray-600 p-0 shadow-5xl shadow-grey-900">
-                <div className='flex gap-x-10 animate-scroll'>
-                        <ul className='flex justify-center text-2xl md:text-3xl animate-pulse text-gray-900'>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-js"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-python"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-html5"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-css3-alt"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-node"></i></li>
-                    <li className='py-5 px-10 sm:px-25'><i className="fa-brands fa-react"></i></li>
+            <section className="flex justify-center bg-gray-600 p-4 shadow-5xl shadow-grey-900">
+                <ul
+                    className="flex flex-wrap justify-center gap-2 md:gap-15 max-w-4xl transition-all duration-700"
+                >
+                    {/** each skill is a fixed-size circle */}
+                    <li
+                        className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23 rounded-full shadow-2xl shadow-gray-900 bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-js text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">JavaScript</span>
+                    </li>
+                    <li className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23  rounded-full shadow-2xl shadow-gray-900 bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-python text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">Python</span>
+                    </li>
+                    <li className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23  rounded-full shadow-2xl shadow-gray-900 bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-html5 text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">HTML</span>
+                    </li>
+                    <li className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23  rounded-full shadow-2xl shadow-gray-900 bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-css3-alt text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">CSS</span>
+                    </li>
+                    <li className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23  rounded-full shadow-2xl shadow-gray-900 bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-node text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">Node.js</span>
+                    </li>
+                    <li className="flex flex-col items-center justify-center w-24 h-24 sm:w-23 sm:h-23  rounded-full shadow-2xl shadow-gray-900  bg-linear-to-b from-gray-600 to-gray-800 text-gray-400 hover:animate-pulse">
+                        <i className="fa-brands fa-react text-2xl"></i>
+                        <span className="mt-1 text-xs sm:text-sm">React</span>
+                    </li>
                 </ul>
-                </div>
             </section>
                 
         </section>

@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { UserCircleIcon, PowerIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
 import { logout, loadUserData } from '../state/auth';
-import { Navigate, useNavigate, Link } from 'react-router-dom'
+import {
+  Navigate,
+  useNavigate,
+  Link,
+  useLocation,
+  Outlet,
+} from 'react-router-dom';
 
 
 
@@ -12,6 +18,7 @@ const Admin = () => {
   const { user, isAuthenticated, loading } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (isAuthenticated && !user) {
@@ -19,7 +26,6 @@ const Admin = () => {
     }
   }, [isAuthenticated, user, dispatch]);
 
-  
   if (!isAuthenticated && !loading) {
     return <Navigate to="/login" replace />;
   }
@@ -28,6 +34,7 @@ const Admin = () => {
     dispatch(logout());
     navigate('/login', { replace: true });
   };
+
 
   return (
     <section className='h-screen bg-linear-to-b from-gray-500 to-gray-800 text-gray-200 flex'>
@@ -41,7 +48,11 @@ const Admin = () => {
             <li className='cursor-pointer hover:opacity-50'>
               <Link
                 to='/admin/profile'
-                className='flex items-center gap-2 hover:text-white'
+                className={`flex items-center gap-2 hover:text-white ${
+                  location.pathname.includes('/profile') || location.pathname === '/admin'
+                    ? 'text-white font-semibold'
+                    : ''
+                }`}
                 onClick={() => setSidebarOpen(false)}
               >
                 <UserCircleIcon className='w-5 h-5' />
@@ -51,7 +62,9 @@ const Admin = () => {
             <li className='cursor-pointer hover:opacity-50'>
               <Link
                 to='/admin/projects'
-                className='flex items-center gap-2 hover:text-white'
+                className={`flex items-center gap-2 hover:text-white ${
+                  location.pathname.includes('/projects') ? 'text-white font-semibold' : ''
+                }`}
                 onClick={() => setSidebarOpen(false)}
               >
                 {/* placeholder icon */}
@@ -95,28 +108,11 @@ const Admin = () => {
           </div>
         </header>
 
-        {/* placeholder body */}
-        <main className='p-8 overflow-auto grid grid-rows md:grid-cols-2'>
-          <div className="">
-            <div className='flex justify-evenly'>
-                <div className='w-fit bg-gray-700 p-5 rounded-lg shadow-lg shadow-gray-900'>
-                  <form action="" className='flex flex-col'>
-                    <fieldset className='border border-gray-300 p-5 rounded-lg'>
-                      <legend className='text-sm text-gray-300'>Update your profile</legend>
-                      <label htmlFor="name">Name: </label>
-                      <input type="text" name='name' id='name' placeholder='Enter your first and lst name'/>
-                    </fieldset>
-                  </form>
-                </div>
-            </div>
-          </div>
-          <div className="bg-green-700 hidden sm:block ">
-            Projects
-          </div>
-          <div className="bg-blue-700 hidden sm:block ">
-            Overlay window
-          </div>
-        </main>
+      <main className='p-8 overflow-auto grid grid-rows md:grid-cols-2'>
+        <div>
+          <Outlet />
+        </div>
+      </main>
       </div>
     </section>
   );

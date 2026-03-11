@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useIntersectionObserver from './useIntersectionObserver';
-import ProjectItem from "./project/ProjectItem";
+import ProjectItem from "./Admin/ProjectItem";
 import axios from "axios";
 
 const Projects = () => {

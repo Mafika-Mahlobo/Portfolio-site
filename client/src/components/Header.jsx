@@ -31,11 +31,11 @@ const Header = () => {
   return (
     <div ref={ref} className={`sticky top-0 flex z-50 h-26 justify-between p-8 text-gray-50 italic font-extralight sm:text-lg text-sm ${ scrolled ? 'bg-linear-to-b from-gray-600 to-gray-700 shadow-md shadow-gray-900' : 'bg-gray-500' } transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
       <div className='p-1 flex gap-0.5 hover:text-green-700 transition-all duration-900 '>
-        <CodeBracketIcon className='text-gray-50 cursor-pointer inline font-bold h-10 w-10 hover:text-green-700 transition-all duration-900 shadow-2xl shadow-green-900
-        '/><span className='p-2 text-xs md:text-sm '>{'  '}Mafika Mahlobo<span className='animate-pulse text-green-70'>_</span></span>
+        <i className="fa-solid fa-microchip text-3xl"></i>
+        <span className='p-2 text-xs md:text-sm '>{'  '}Mafika Mahlobo<span className='animate-pulse text-green-70'>_</span></span>
       </div>
         
-        <ul className='list-none hidden sm:flex'>
+        <ul className='list-none hidden sm:flex italic text-sm'>
           <a href="#home"><li className='p-5 cursor-pointer text-center hover:border-b hover:border-green-800 hover:text-green-800 hover:font-bold hover:text-xl transition-all duration-900'>Home</li></a>
           <a href="#projects"><li className='p-5 cursor-pointer text-center hover:border-b  hover:border-green-800 hover:text-green-800 hover:font-bold hover:text-xl transition-all duration-900'>Profolio</li></a>
           <a href="#contact"><li className='p-5 cursor-pointer text-center hover:border-b  hover:border-green-800 hover:text-green-800 hover:font-bold hover:text-xl transition-all duration-900'>About me</li></a>

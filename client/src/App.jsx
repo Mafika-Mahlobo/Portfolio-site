@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/auth/Login'
 import PrivateRoute from './Routing/PrivateRoute'
 import Admin from './components/Admin'
+import UpdateProfile from './components/Admin/UpdateProfile';
+import UpdateProject from './components/Admin/UpdateProject';
 
 
 function App() {
@@ -61,7 +63,6 @@ function App() {
     <Router>
       <Fragment>
         <Routes>
-          
             <Route path='/' element={
               <>
                 <Header />
@@ -70,13 +71,19 @@ function App() {
                 <Contact bio={bio}/>
                 <Footer />
               </>
-              } />
+            } />
 
             <Route path='/login' element={<Login />} />
+
             <Route element={<PrivateRoute />}>
-                <Route path='/admin' element={<Admin />} />
+              <Route path='/admin' element={<Admin />}>
+               
+                <Route index element={<Navigate to="profile" replace />} />
+                <Route path='profile' element={<UpdateProfile />} />
+                <Route path='projects' element={<UpdateProject />} />
+              </Route>
             </Route>
-       </Routes>
+          </Routes>
       </Fragment> 
     </Router>  
   )
