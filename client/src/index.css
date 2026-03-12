@@ -12,3 +12,12 @@
 .animate-scroll {
   animation: scroll 20s linear infinite;
 }
+
+/* hide native scrollbars on textarea elements */
+textarea {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

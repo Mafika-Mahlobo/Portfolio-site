@@ -20,6 +20,12 @@ const Admin = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
   useEffect(() => {
     if (isAuthenticated && !user) {
       dispatch(loadUserData());
@@ -37,11 +43,13 @@ const Admin = () => {
 
 
   return (
-    <section className='h-screen bg-linear-to-b from-gray-500 to-gray-800 text-gray-200 flex'>
+    <section className='h-screen text-gray-200 flex relative'>
       {/* sidebar */}
       <nav
+        role='navigation'
+        aria-label='Admin menu'
         className={`fixed inset-y-0 left-0 w-64 bg-gray-800 transform transition-transform duration-200 ease-in-out z-20
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`}
       >
         <div className='mt-20 px-4'>
           <ul className='space-y-4'>
@@ -85,34 +93,35 @@ const Admin = () => {
         </div>
       </nav>
 
+      {/* overlay for small-screen sidebar */}
+      {sidebarOpen && (
+        <div
+          className='fixed inset-0 bg-black bg-opacity-50 z-10 sm:hidden'
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden='true'
+        />
+      )}
       {/* main content area */}
-      <div className='flex-1 flex flex-col'>
+      <div className='flex-1 flex flex-col h-full sm:ml-64'>
         {/* header */}
-        <header className='flex items-center justify-between p-5 shadow-md bg-gray-700'>
+        <header className='flex sticky top-0 z-20 items-center justify-between sm:justify-end p-5 shadow-md bg-gray-800'>
           <button
             className='text-gray-300 hover:text-white focus:outline-none cursor-pointer sm:hidden'
             onClick={() => setSidebarOpen(prev => !prev)}
+            aria-label='Toggle menu'
           >
             <Bars3BottomLeftIcon className='w-6 h-6' />
           </button>
-           <button
-                onClick={handleLogout}
-                className='items-center gap-2 hover:text-white border border-gray-400  cursor-pointer hidden sm:flex  p-2 rounded-2xl shadow-md shadow-gray-900'
-              >
-                <PowerIcon className='w-4 h-auto' />
-                <span className='text-xs'>Sign out</span>
-            </button>
+          
           <div className='flex items-center gap-2'>
             <p className='text-sm'>{user ? user.name : '...'}</p>
             <UserCircleIcon className='w-6 h-6' />
           </div>
         </header>
 
-      <main className='p-8 overflow-auto grid grid-rows md:grid-cols-2'>
-        <div>
+        <main className='flex-1 min-h-0 grid grid-rows'>
           <Outlet />
-        </div>
-      </main>
+        </main>
       </div>
     </section>
   );

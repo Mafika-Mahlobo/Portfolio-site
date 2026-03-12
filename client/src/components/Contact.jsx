@@ -59,7 +59,7 @@ const Contact = ({bio}) => {
                     </div>
                     <div className='w-full'>
                         <label htmlFor="body" className='block text-sm font-medium text-gray-200 mb-1'>Message</label>
-                        <textarea onChange={(e) => setText(e.target.value)} value={text} required className='w-full px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-gray-200 min-h-40 resize-vertical focus:outline-none focus:ring-2 focus:ring-green-600' name="body" id="body" placeholder='Write your message here...'></textarea>
+                        <textarea onChange={(e) => setText(e.target.value)} value={text} required className='overflow-hidden w-full px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-gray-200 min-h-40 resize-vertical focus:outline-none focus:ring-2 focus:ring-green-600' name="body" id="body" placeholder='Write your message here...'></textarea>
                     </div>
                     <div className='w-full flex justify-center md:justify-start'>
                       <button className='bg-green-700 text-white px-6 py-2 rounded-2xl m-0 w-full hover:bg-green-800 transition-colors cursor-pointer'>Leave a message</button>
