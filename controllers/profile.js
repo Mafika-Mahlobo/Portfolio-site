@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 // Add or update user profile
 exports.addProfile = async (req, res) => {
     const { name, email, password, hero, bio } = req.body;
-    let profilePic = req.files?.['profile-pic']?.[0];
+    let profilePic = req.files?.['profilePicture']?.[0] || req.files?.['profilePicture']?.[0];
     let resume = req.files?.['resume']?.[0];
 
     try {

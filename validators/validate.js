@@ -9,7 +9,7 @@ const validate = (req, res, next) => {
     }
     
     // return errors
-    return res.json({errors: errors.array()});
+    return res.status(400).json({errors: errors.array()});
 
 };
 

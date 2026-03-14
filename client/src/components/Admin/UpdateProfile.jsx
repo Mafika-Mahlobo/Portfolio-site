@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../state/auth';
+import { addUpdateProfile } from '../../state/auth';
 
 
 
 const UpdateProfile = () => {
-  const { user } = useSelector(state => state.auth);
+  const { user, errors } = useSelector(state => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
@@ -29,21 +29,37 @@ const UpdateProfile = () => {
     }
   }, [user]);
 
-   const handleLogout = () => {
-      dispatch(logout());
-      navigate('/login', { replace: true });
-    };
-    
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: dispatch update action or call API
-    console.log({ name, email, password, confirmPassword, hero, bio, profilePicture, resume });
+
+    if (password && password !== confirmPassword) {
+      //To do: replace with better error handling and user feedback
+      alert('Passwords do not match!');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    if (password) formData.append('password', password);
+    formData.append('hero', hero);
+    formData.append('bio', bio);
+    if (profilePicture) formData.append('profilePicture', profilePicture);
+    if (resume) formData.append('resume', resume);
+
+    dispatch(addUpdateProfile(formData))
+      .unwrap()
+      .then(() => {
+        alert('Profile updated successfully!');
+      })
+      .catch((err) => {
+        alert('Error updating profile: ' + err.msg);
+      });
   };
 
   return (
       
       <div className='bg-linear-to-b from-gray-600 to-gray-800 p-8 flex justify-center items-start'> 
-        {user ? (
           <form onSubmit={handleSubmit} className='flex flex-col w-full max-w-xl space-y-4' >
           <fieldset className='p-5 rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Update your profile</legend>
@@ -78,12 +94,10 @@ const UpdateProfile = () => {
                 <input
                 type="file"
                 name='profile-picture'
-                id='profile-picture'
-                hidden
+                id='profile-picture' 
                 className='w-full text-gray-200'
                 onChange={e => setProfilePicture(e.target.files[0])}
               />
-              <span className='pl-2'><i className='fas fa-file-upload'></i></span>
               </label>
               
             </div>
@@ -95,12 +109,9 @@ const UpdateProfile = () => {
                 type="file"
                 name='resume'
                 id='resume'
-                hidden
                 className='w-full text-gray-200'
                 onChange={e => setResume(e.target.files[0])}
               />
-      
-              <span className='pl-2'><i className='fas fa-file-upload'></i></span>
               </label>
              
             </div>
@@ -109,19 +120,6 @@ const UpdateProfile = () => {
             </button>
           </fieldset>
         </form>
-
-        ) : (
-          <div className='text-gray-300 text-center p-5'>
-            <p>Your session has expired</p>
-            <button
-              onClick={handleLogout}
-              className='flex items-center gap-2 hover:text-white cursor-pointer mt-2'
-            >
-             
-              <span className='p-5 bg-green-700 rounded-2xl hover:bg-gray-900 transform transition-transform duration-100'>Back to login page</span>
-            </button>
-          </div>
-        )}
       </div>
   )
 }

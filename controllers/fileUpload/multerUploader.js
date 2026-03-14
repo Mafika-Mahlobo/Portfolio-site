@@ -8,7 +8,7 @@ const upload = multer({
         fileSize: 5 * 1024 * 1024
     },
     fileFilter: (req, file, cb) => {
-        if (file.fieldname === 'profile-pic' || file.fieldname === 'project-pics') {
+        if (file.fieldname === 'profilePicture' || file.fieldname === 'project-pics') {
             if (!file.mimetype.startsWith('image/')) {
                 return cb(new Error('Invalid file type: Upload a picture'));
             }
@@ -26,7 +26,7 @@ const upload = multer({
 
 
 const uploadProfile = upload.fields([
-    {name: 'profile-pic', maxCount: 1},
+    {name: 'profilePicture', maxCount: 1},
     {name: 'resume', maxCount: 1}
 ]);
 

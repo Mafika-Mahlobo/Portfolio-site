@@ -14,10 +14,16 @@
 }
 
 /* hide native scrollbars on textarea elements */
-textarea {
+textarea .scroll-divs {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 textarea::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+#project-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
 }

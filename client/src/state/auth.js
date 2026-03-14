@@ -7,7 +7,7 @@ if (existingToken) {
     axios.defaults.headers.common['auth-token'] = existingToken;
 }
 
-
+// User login
 export const userLogin = createAsyncThunk(
     "user/login",
     async (userData, thunkAPI) => {
@@ -63,6 +63,29 @@ export const userLogin = createAsyncThunk(
     }
 );
 
+// Add or update user profile
+export const addUpdateProfile = createAsyncThunk(
+    'user/profile',
+    async (userData, thunkAPI) => {
+        try {
+            console.log(userData);
+
+            const res = await axios.put(
+                'http://127.0.0.1:5000/api/users',
+                userData
+            );
+
+            return thunkAPI.fulfillWithValue(res.data);
+
+        } catch (error) {
+           
+            
+            return thunkAPI.rejectWithValue(error.response?.data.errors[0]);
+        }
+    }
+);
+
+// Get logged-in user
 export const loadUserData = createAsyncThunk(
     'load/user',
     async (thunkAPI) => {
@@ -151,6 +174,22 @@ const  authSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.user = null;
+        })
+
+        //Add or update user
+        .addCase(addUpdateProfile.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(addUpdateProfile.fulfilled, (state, action) => {
+            // payload is the updated user object
+            console
+            state.loading = false;
+            state.user = action.payload;
+            state.errors = null;
+        })
+        .addCase(addUpdateProfile.rejected, (state, action) => {
+            state.loading = false;
+            state.errors = action.payload;
         })
 
     },
