@@ -11,8 +11,8 @@ exports.AddProject = async (req, res) => {
     try {
         
         // check upload
-        if (!files.length || files.length == 0) {
-            return res.status(400).json({msg: 'Please upload at least one picture'});
+        if (!files || files.length == 0) {
+            return res.status(200).json({msg: 'Please upload at least one picture'});
         }
 
         // upload pictures to cloudnary
@@ -39,7 +39,7 @@ exports.AddProject = async (req, res) => {
             }
         });
 
-        // sacve project
+        // save project
         await newProjects.save();
 
         return res.status(200).json(newProjects);

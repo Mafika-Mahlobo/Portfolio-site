@@ -30,7 +30,7 @@ const uploadProfile = upload.fields([
     {name: 'resume', maxCount: 1}
 ]);
 
-const uploadProject = upload.array('project-pics', 7)
+const uploadProject = upload.array('pictures', 7)
 
 const handleUpload = (middleware) => {
     return (req, res, next) => {

@@ -14,11 +14,10 @@ import {
 
 const Admin = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const { user, isAuthenticated, loading } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth);
 
   
   useEffect(() => {
@@ -80,6 +79,19 @@ const Admin = () => {
                 <span>Projects</span>
               </Link>
             </li>
+             <li className='cursor-pointer hover:opacity-50 ml-5'>
+                    <Link
+                      to='/admin/projects/add'
+                      className={`flex items-center gap-2 hover:text-white ${
+                        location.pathname.includes('/add') ? 'text-white' : ''
+                      }`}
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      {/* placeholder icon */}
+                      <i className="fa-solid fa-plus"></i>
+                      <span>Add Project</span>
+                    </Link>
+                  </li>
             <li className='cursor-pointer hover:opacity-50'>
               <button
                 onClick={handleLogout}

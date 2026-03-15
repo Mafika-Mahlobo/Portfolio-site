@@ -11,7 +11,9 @@ import Login from './components/auth/Login'
 import PrivateRoute from './Routing/PrivateRoute'
 import Admin from './components/Admin'
 import UpdateProfile from './components/Admin/UpdateProfile';
-import UpdateProject from './components/Admin/UpdateProject';
+import ProjectsAdmin from './components/Admin/ProjectsAdmin'
+import AddProject from './components/Admin/AddProject'
+import EditProject from './components/Admin/EditProject'
 
 
 function App() {
@@ -80,7 +82,9 @@ function App() {
                
                 <Route index element={<Navigate to="profile" replace />} />
                 <Route path='profile' element={<UpdateProfile />} />
-                <Route path='projects' element={<UpdateProject />} />
+                <Route path='projects' element={<ProjectsAdmin />} />
+                <Route path='projects/add' element={<AddProject />} />
+                <Route path='projects/update/:id' element={ <EditProject /> } />
               </Route>
             </Route>
           </Routes>

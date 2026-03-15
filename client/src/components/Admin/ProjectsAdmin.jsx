@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const UpdateProject = () => {
+const ProjectsAdmin = () => {
   const [ searchString, setSearchString ] = useState('');
   const [ projects, setProjects ] = useState(null);
   const { loading, user } = useSelector(state => state.auth);
+  const location = useLocation();
 
   useEffect(() => {
       const fetchProjects = async () => {
@@ -20,6 +22,15 @@ const UpdateProject = () => {
 
       fetchProjects();
   }, []);
+
+  const redirect = (page, projectId=null) => {
+    if (page === 'add') {
+        window.location.href = '/admin/projects/add';
+    } else {
+      window.location.href = `/admin/projects/update/${projectId}`;
+    }
+    
+  };
 
   
   const handleSearchChange = (e) => {
@@ -36,6 +47,21 @@ const UpdateProject = () => {
     const filteredProjects = projects?.filter(project => project.title.toLowerCase().includes(searchString.toLowerCase()));
     setProjects(filteredProjects);
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`http://127.0.0.1:5000/api/projects/${id}`);
+
+      //To Do: Replace with user feedback
+      alert(res.data.msg);
+
+    } catch (error) {
+      console.log(error);
+
+      //To Do: Replace with user feedback
+      alert(error);
+    }
+  } 
 
   return (
     <Fragment>
@@ -57,18 +83,18 @@ const UpdateProject = () => {
                 onChange={(e) => handleSearchChange(e)} 
               />
             </div>
-            <div className='flex items-center justify-center border border-gray-300 p-5 rounded-lg min-h-50 max-h-60 overflow-y-auto' id='project-list'>
+            <div className='flex items-center justify-center border border-gray-300 p-5 pt-10 rounded-lg min-h-50' id='project-list'>
               <ul className='w-full' >
                 {
                   projects?.map(project => (
                     <li key={project._id} className='p-3 border-b border-gray-300 w-full flex justify-between items-center bg-linear-to-b from-gray-500 to-gray-700 mb-2 rounded-lg transition duration-300 cursor-pointer'>
                       <span className='p-2 text-sm'>{ project.title }</span>
                       <div className='flex gap-2'>
-                        <button className='bg-green-700 hover:bg-green-800 text-white font-bold py-1 px-3 rounded transition duration-700 cursor-pointer'>
-                          Edit
+                        <button onClick={() => redirect('update', project._id)} className='bg-green-700 hover:bg-green-800 text-white font-bold py-1 px-3 rounded transition duration-700 cursor-pointer'>
+                          <i className="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded transition duration-700 cursor-pointer'>
-                          Delete
+                        <button onClick={() => handleDelete(project._id)} className='bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded transition duration-700 cursor-pointer'>
+                          <i className="fa-solid fa-trash"></i>
                         </button>
                       </div>
                     </li>
@@ -80,9 +106,11 @@ const UpdateProject = () => {
         </div>
         <div className='flex flex-row justify-center items-center'>
           <fieldset className='p-5 rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900 w-full max-w-xl'>
-            <legend className='text-xl text-green-600 font-extrabold'>Add new project</legend>
-             <div className='flex justify-center p-10 border border-gray-400 rounded-3xl shadow-3xl shadow-gray-900'>
-                <i class="fa fa-folder-plus text-gray-400 hover:text-green-700 text-6xl cursor-pointer"></i>
+            <legend className='text-xl text-green-600 font-extrabold'>Add project</legend>
+             <div className='flex justify-center p-10 border border-gray-400 rounded-3xl shadow-3xl shadow-gray-900' onClick={() => redirect('add')}>
+                <i className="fa fa-folder-plus text-gray-400 hover:text-green-700 text-6xl cursor-pointer" >
+
+                </i>
              </div>
           </fieldset>
         </div>
@@ -92,4 +120,4 @@ const UpdateProject = () => {
   )
 }
 
-export default UpdateProject
+export default ProjectsAdmin;
