@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUpdateProfile } from '../../state/auth';
+import { displayAlert } from '../../utils/alert';
+import Spinner from '../../utils/Spinner';
 
 
 
@@ -18,6 +20,7 @@ const UpdateProfile = () => {
   const [bio, setBio] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
   const [resume, setResume] = useState(null);
+  const [ loading, setLoading ] = useState(false);
 
   // keep input fields in sync with store
   useEffect(() => {
@@ -32,9 +35,10 @@ const UpdateProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
     if (password && password !== confirmPassword) {
-      //To do: replace with better error handling and user feedback
-      alert('Passwords do not match!');
+      
+      displayAlert(dispatch, 'Passwords do not match!', 'info');
       return;
     }
 
@@ -47,19 +51,27 @@ const UpdateProfile = () => {
     if (profilePicture) formData.append('profilePicture', profilePicture);
     if (resume) formData.append('resume', resume);
 
+    setLoading(true);
     dispatch(addUpdateProfile(formData))
       .unwrap()
       .then(() => {
-        alert('Profile updated successfully!');
+        setLoading(false);
+        displayAlert(dispatch, 'Profile updated successfully!', 'success');
       })
       .catch((err) => {
-        alert('Error updating profile: ' + err.msg);
+        setLoading(false);
+        displayAlert(dispatch, 'Error updating profile: ' + err.msg, 'danger');
       });
   };
 
   return (
       
       <div className='bg-linear-to-b from-gray-600 to-gray-800 p-8 flex justify-center items-start'> 
+        {
+          loading ? 
+          <Spinner />
+
+          :
           <form onSubmit={handleSubmit} className='flex flex-col w-full max-w-xl space-y-4' >
           <fieldset className='p-5 rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Update your profile</legend>
@@ -120,6 +132,7 @@ const UpdateProfile = () => {
             </button>
           </fieldset>
         </form>
+      }
       </div>
   )
 }

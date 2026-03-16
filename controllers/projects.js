@@ -12,7 +12,7 @@ exports.AddProject = async (req, res) => {
         
         // check upload
         if (!files || files.length == 0) {
-            return res.status(200).json({msg: 'Please upload at least one picture'});
+            return res.status(400).json({msg: 'Please upload at least one picture'});
         }
 
         // upload pictures to cloudnary
@@ -63,24 +63,18 @@ exports.updateProject = async (req, res) => {
         const checkProject = await Projects.findOne({ _id: req.params.id });
 
         if (!checkProject) {
-            res.status(404).json({msg: 'Project not found'});
-        }
-
-        
-        //check if project has pictures
-        if (checkProject.pictures.length > 0) {
-            checkProject.pictures.map(async (project) => {
-                await deleteFile(project.public_id);
-            });
-        }
-
-        // check project
-        if (!checkProject) {
             return res.status(404).json({msg: 'Project not found'});
         }
 
         // check upload
-        if (files.length > 0) {
+        if (files && files.length > 0) {
+
+            //check if project has pictures
+            if (checkProject.pictures.length > 0) {
+                checkProject.pictures.map(async (project) => {
+                    await deleteFile(project.public_id);
+                });
+            }
 
             // upload pictures to cloudnary
             picturseData = await Promise.all(
@@ -94,30 +88,30 @@ exports.updateProject = async (req, res) => {
                 })
             );
 
-            // create Projects object
-            const newProject = {
-                user: req.id,
-                title: title,
-                description: description,
-                pictures: picturseData,
-                links: {
-                    repo: githubLink,
-                    live: liveLink
-                }
-            };
-
-            // update project
-            await Projects.findOneAndUpdate(
-                {_id: req.params.id},
-                {$set: newProject}
-            )
-
-            return res.status(200).json(newProject);
-            
+        } else {
+            // no new files, keep old pictures
+            picturseData = checkProject.pictures;
         }
 
+        // create Projects object
+        const newProject = {
+            user: req.id,
+            title: title,
+            description: description,
+            pictures: picturseData,
+            links: {
+                repo: githubLink,
+                live: liveLink
+            }
+        };
 
-        return res.status(400).json({msg: 'Please upload at least one picture'});
+        // update project
+        await Projects.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set: newProject}
+        )
+
+        return res.status(200).json(newProject);
 
     } catch (error) {
         return res.status(500).json({error: 'project not found'});

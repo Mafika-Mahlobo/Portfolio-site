@@ -18,6 +18,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isAuthenticated, loading } = useSelector(state => state.auth);
+  const { msg, type } = useSelector(state => state.alert)
 
   
   useEffect(() => {
@@ -43,6 +44,9 @@ const Admin = () => {
 
   return (
     <section className='h-screen text-gray-200 flex relative'>
+      <span className={`${msg ? 'fixed': 'hidden'} ${type === 'success' ? 'bg-green-700' : 'bg-red-700'} h-fit w-full p-5 pl-10 pr-10 z-30 flex justify-center`}>
+          {msg}
+      </span>
       {/* sidebar */}
       <nav
         role='navigation'

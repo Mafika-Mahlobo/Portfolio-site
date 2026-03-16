@@ -1,5 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { displayAlert } from '../../utils/alert';
+import Spinner from '../../utils/Spinner';
 
 
 const AddProject = () => {
@@ -8,13 +11,17 @@ const AddProject = () => {
   const [ githubLink, setGithubLink ] = useState('');
   const [ liveLink, setLiveLink ] = useState('');
   const [ pictures, setPictures ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+
+  const dispatch = useDispatch();
+  const { msg } = useSelector(state => state.alert);
 
   const formData = new FormData();
   formData.append('title', title);
   formData.append('description', description);
   formData.append('githubLink', githubLink);
   formData.append('liveLink', liveLink);
-  for (let i = 0; i < pictures.length; i++) {
+  for (let i = 0; i <= pictures.length - 1; i++) {
     formData.append('pictures', pictures[i]);
   }
 
@@ -22,21 +29,48 @@ const AddProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await axios.post('http://127.0.0.1:5000/api/projects', formData);
+    setLoading(true);
 
-      // To do: Replace with user feedback
-      alert(`${res.data.title} has been succeesully added!`);
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/api/projects', formData).then(() => {
+
+          setLoading(false);
+          displayAlert(dispatch, `Project has been succeesully added!`, 'success');
+      })
+
+      
+      if (msg === null) {
+        window.location.href = '/admin/projects';
+      }
+      
 
     } catch (error) {
-      console.log(error);
-      //To do: Replace with feedback
-      alert(error);
+      
+      setLoading(false);
+      if (error.status === 400){
+        displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
+
+      } else if (error.status === 403) {
+        displayAlert(dispatch, 'Please attach a maximum of 7 pictures', 'danger');
+
+      }
+      else {
+          displayAlert(dispatch, error.message, 'danger');
+          console.log(error);
+      }
+       
     }
   }
 
   return (
     <div className='grid grid-rows-1 gap-5 bg-linear-to-b from-gray-600 to-gray-800 p-8 justify-center items-start'>
+        {
+          loading ?
+
+          <Spinner />
+
+          :
+      
          <fieldset className='p-5 lg:w-lg rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Add project</legend>
             <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col w-full max-w-xl space-y-4' >
@@ -76,6 +110,7 @@ const AddProject = () => {
                     </button>
             </form>
          </fieldset>
+        }
     </div>
   )
 }

@@ -1,5 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { displayAlert } from '../../utils/alert';
+import Spinner from '../../utils/Spinner';
 
 const EditProject = () => {
   const id = window.location.pathname.split('/').pop();
@@ -9,6 +12,9 @@ const EditProject = () => {
   const [ githubLink, setGithubLink ] = useState('');
   const [ liveLink, setLiveLink ] = useState('');
   const [ pictures, setPictures ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+
+  const dispatch = useDispatch();
 
   const formData = new FormData();
   formData.append('title', title);
@@ -44,21 +50,39 @@ const EditProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setLoading(true);
     try {
-      const res = await axios.put(`http://127.0.0.1:5000/api/projects/${id}`, formData);
-      
-      //To do: Replace with user feedback
-      alert(`${res.data.title} Has been successfully updated!`);
+      const res = await axios.put(`http://127.0.0.1:5000/api/projects/${id}`, formData).then(() => {
+          setLoading(false);
+          displayAlert(dispatch, `The project has been successfully updated!`, 'success');
+      });
+    
+      setTimeout(() => {
+        window.location.href = '/admin/projects';
+      }, 2000);
 
     } catch (error) {
-        console.log(error);
-        //To do: repace with user feedback
-        alert(error);
+        
+        if (error.status === 400){
+          displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
+        } else if (error.status === 403) {
+          displayAlert(dispatch, 'Please attach a maximum of 7 pictures', 'danger');
+        }
+        else {
+            displayAlert(dispatch, 'The was an error processing your request', 'danger');
+        }
     }
   }
 
   return (
     <div className='grid grid-rows-1 gap-5 bg-linear-to-b from-gray-600 to-gray-800 p-8 justify-center items-start'>
+         {
+          loading ?
+
+          <Spinner />
+
+          :
+         
          <fieldset className='p-5 lg:w-lg rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Update project</legend>
             <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col w-full max-w-xl space-y-4' >
@@ -97,6 +121,7 @@ const EditProject = () => {
                     </button>
             </form>
          </fieldset>
+        }
     </div>
   )
 }

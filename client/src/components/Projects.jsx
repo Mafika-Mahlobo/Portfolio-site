@@ -31,16 +31,20 @@ const Projects = () => {
               <i className="fa-solid fa-wrench text-gray-700 text-2xl"></i> Projects <i className="fa-solid fa-wrench text-gray-700 text-2xl"></i>
             </legend>
             <div className='p-2 flex flex-col gap-y-5'>
-              {
-                    projects.map((project, index) => (
+              { projects.length > 0 ?
+                    projects.map((project) => (
                       <ProjectItem title={project.title} 
                   description={project.description} 
                   git={project.links ? project.links.repo ? project.links.repo : null : null}
                   live={project.links ? project.links.live ? project.links.live : null : null}
                   pictures={project.pictures}
-                  index={index}
                   key={project._id} />
                 ))
+                :
+                <div className='text-gray-300 text-center sm:mx-30 lg:mx-100 flex flex-col justify-center items-center'>
+                  <p className="text-gray-400 text-2xl font-bold">No projects</p>
+                  <i className="fa-solid fa-wrench p-10 text-4xl text-gray-400"></i>
+                </div>
 
               }
             </div>

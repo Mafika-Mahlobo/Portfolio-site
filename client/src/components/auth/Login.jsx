@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLogin, loadUserData } from '../../state/auth';
-import { RocketLaunchIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../utils/Spinner';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,10 +34,8 @@ const Login = () => {
   return (
     <section className='flex items-center justify-center w-screen h-screen bg-linear-to-b from-gray-500 to-gray-800'>
         {
-            loading ? <div className={`w-max bg-green-900 p-5 md:p-15 m-10 items-center justify-center rounded-2xl md:animate-bounce text-gray-300 ${loading ? '': 'hidden'}`}>
-                    <RocketLaunchIcon className='animate-pulse'/>
-                     <h1 className="animate-pulse">{'Processing...'}</h1>
-                    </div>
+            loading ? 
+                <Spinner />
                 :
                 <div className='w-full max-w-md px-4'>
             <form onSubmit={handleSubmit} className=' rounded-lg shadow-2xl p-8 space-y-6'>

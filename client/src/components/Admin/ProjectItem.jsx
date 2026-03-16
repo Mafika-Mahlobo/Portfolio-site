@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ProjectItem = ({ title, description, git, live, pictures, index}) => {
+const ProjectItem = ({ title, description, git, live, pictures}) => {
      
     const [ currentIndex, setCurrentIndex ] = useState(0);
 
@@ -9,9 +9,10 @@ const ProjectItem = ({ title, description, git, live, pictures, index}) => {
         };
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             nextImage();
         }, 4000);
+        return () => clearInterval(interval);
     }, []);
      
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { UserCircleIcon, HomeModernIcon, Bars3BottomLeftIcon,  CodeBracketIcon } from '@heroicons/react/24/solid';
+import { UserCircleIcon, HomeModernIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
 import useIntersectionObserver from './useIntersectionObserver';
 
 
@@ -29,7 +29,9 @@ const Header = () => {
   
 
   return (
-    <div ref={ref} className={`sticky top-0 flex z-50 h-26 justify-between p-8 text-gray-50 italic font-extralight sm:text-lg text-sm ${ scrolled ? 'bg-linear-to-b from-gray-600 to-gray-700 shadow-md shadow-gray-900' : 'bg-gray-500' } transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
+    <div ref={ref} className={`sticky top-0 flex z-50 h-26 justify-between p-8 text-gray-50 italic font-extralight 
+    sm:text-lg text-sm ${ scrolled ? 'bg-linear-to-b from-gray-600 to-gray-700 shadow-md shadow-gray-900' : 'bg-gray-500' } 
+    transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
       <div className='p-1 flex gap-0.5 hover:text-green-700 transition-all duration-900 '>
         <i className="fa-solid fa-microchip text-3xl"></i>
         <span className='p-2 text-xs md:text-sm '>{'  '}Mafika Mahlobo<span className='animate-pulse text-green-70'>_</span></span>
