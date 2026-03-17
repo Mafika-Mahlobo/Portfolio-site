@@ -11,9 +11,10 @@ const Projects = () => {
       
       const fetchProjects = async () => {
         try {
-          const res = await axios.get('http://127.0.0.1:5000/api/projects/all/6997eae9bea0458f5cd582c9');
-          setProjects(res.data);
-  
+          const userId = '69b835ce3363cfe6f4c942c3';
+          const res = await axios.get(`/api/projects/all/${userId}`);
+          const data = Array.isArray(res.data) ? res.data : [];
+          setProjects(data);
         } catch (error) {
           console.log(error);
         }
@@ -22,6 +23,7 @@ const Projects = () => {
       fetchProjects();
       
     }, []);
+
   
   return (
     <section id='projects' ref={ref}  className={`flex flex-col items-center bg-linear-to-b from-gray-600 to-gray-800 p-4 md:p-6 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>

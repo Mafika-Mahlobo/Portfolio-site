@@ -37,7 +37,7 @@ const EditProject = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://127.0.0.1:5000/api/projects/${id}`);
+        const res = await axios.get(`/api/projects/${id}`);
         setProject(res.data);
   
       } catch (error) {
@@ -52,7 +52,7 @@ const EditProject = () => {
     
     setLoading(true);
     try {
-      const res = await axios.put(`http://127.0.0.1:5000/api/projects/${id}`, formData).then(() => {
+      const res = await axios.put(`/api/projects/${id}`, formData).then(() => {
           setLoading(false);
           displayAlert(dispatch, `The project has been successfully updated!`, 'success');
       });

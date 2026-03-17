@@ -3,8 +3,11 @@ import useIntersectionObserver from './useIntersectionObserver';
 import { useState } from 'react';
 import axios from 'axios';
 import { RocketLaunchIcon } from '@heroicons/react/24/solid';
+import { displayAlert } from '../utils/alert';
+import { useDispatch } from 'react-redux';
 
 const Contact = ({bio}) => {
+    const dispatch = useDispatch();
 
     const { ref, isVisible } = useIntersectionObserver({threshold: 0.3});
 
@@ -24,8 +27,8 @@ const Contact = ({bio}) => {
         };
         
         try {
-            const res = await axios.post('http://127.0.0.1:5000/api/contact', {title: subject, message: text}, config);
-            alert(res.data.msg);
+            const res = await axios.post('/api/contact', {title: subject, message: text}, config);
+            displayAlert(dispatch, 'Message send!', 'success');
            
             
         } catch (error) {

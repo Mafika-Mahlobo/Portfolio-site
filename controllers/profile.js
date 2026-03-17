@@ -71,10 +71,10 @@ exports.addProfile = async (req, res) => {
         // find and update user
         const currentUser = await User.findOneAndUpdate(
             { _id: req.id },
-            { $set:  newData},
-            { returnDocument: 'after', runValidators: true }
+            { $set:  newData}
         );
 
+        // Return user
         return res.status(200).json(currentUser);
         
 
@@ -89,8 +89,10 @@ exports.getUserProfile = async (req, res) => {
 
     try {
         
-        const profile = await User.findById({_id: userId});
+        // Get profile
+        const profile = await User.findById(userId);
 
+        // Check and return profile or error
         if (!profile) return res.status(200).json({msg: 'User profile not found'})
         return res.status(200).json(profile);
 
@@ -104,8 +106,10 @@ exports.getUser = async (req, res) => {
     const id = req.id;
 
     try {
-        const profile = await User.findById({_id: id}).select('-password')
+        // Get user
+        const profile = await User.findById(id).select('-password')
 
+        // Check and return profile or error
         if (!profile) return res.status(200).json({msg: 'User profile not found'})
         return res.status(200).json(profile);
 

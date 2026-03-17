@@ -42,6 +42,7 @@ exports.AddProject = async (req, res) => {
         // save project
         await newProjects.save();
 
+        // return project
         return res.status(200).json(newProjects);
             
 
@@ -69,7 +70,7 @@ exports.updateProject = async (req, res) => {
         // check upload
         if (files && files.length > 0) {
 
-            //check if project has pictures
+            // check if project has pictures
             if (checkProject.pictures.length > 0) {
                 checkProject.pictures.map(async (project) => {
                     await deleteFile(project.public_id);

@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { uploadFile } = require('./fileUpload/fileUpload');
-const { issueToken } = require('./jwt');
+const { issueToken } = require('./utils/jwt');
 
 // Add user
 exports.addUser = async (req, res) => {

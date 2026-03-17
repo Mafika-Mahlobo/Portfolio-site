@@ -1,7 +1,9 @@
 const multer = require('multer');
 
+// multer memory storage engine
 const storage = multer.memoryStorage();
 
+// configure upload middleware
 const upload = multer({
     storage: storage,
     limits: {
@@ -24,12 +26,13 @@ const upload = multer({
     }
 });
 
-
+// profile upload
 const uploadProfile = upload.fields([
     {name: 'profilePicture', maxCount: 1},
     {name: 'resume', maxCount: 1}
 ]);
 
+//project upload
 const uploadProject = upload.array('pictures', 7)
 
 const handleUpload = (middleware) => {
@@ -53,7 +56,7 @@ const handleUpload = (middleware) => {
                 return res.status(500).json({msg: error.message})
             }
 
-            next()
+            next();
         })
     }
 }

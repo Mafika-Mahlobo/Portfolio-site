@@ -19,7 +19,7 @@ export const userLogin = createAsyncThunk(
             }
 
             const res = await axios.post(
-                'http://127.0.0.1:5000/api/auth/login',
+                '/api/auth/login',
                 { email: userData.email, password: userData.password },
                 config
             );
@@ -70,7 +70,7 @@ export const addUpdateProfile = createAsyncThunk(
         try {
 
             const res = await axios.put(
-                'http://127.0.0.1:5000/api/users',
+                '/api/users',
                 userData
             );
 
@@ -95,7 +95,7 @@ export const loadUserData = createAsyncThunk(
 
         try {
             
-            const res = await axios.get('http://127.0.0.1:5000/api/users/');
+            const res = await axios.get('/api/users/');
 
             return res.data;
 

@@ -19,13 +19,13 @@ router.post('/', auth, projectUploadMiddleware, projectsChecks, validate, AddPro
 // @access private
 router.put('/:id', auth, projectUploadMiddleware, projectsChecks, validate, updateProject);
 
-// @route GET /api/projects
+// @route GET /api/projects/all/:userID
 // @desc Get all projects
 // @access public
 router.get('/all/:userId', getProjects);
 
 // @route GET /api/projects
-// @desc Get project by ID
+// @desc Get project by ID 
 // @access public
 router.get('/:id', getProjectById);
 

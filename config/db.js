@@ -5,7 +5,7 @@ const Dbconnect = async () => {
     mongoose.connect(config.get('mongoConnection'))
     .then(() => {
         console.log('Database connected!')
-    }).catch(() => {
+    }).catch((err) => {
         console.log('Error: Could not connecte to the Database')
     });
 }

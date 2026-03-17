@@ -14,7 +14,7 @@ const ProjectsAdmin = () => {
       const fetchProjects = async () => {
         const id = user ? user._id : 'none'
         try {
-           const res = await axios.get(`http://127.0.0.1:5000/api/projects/all/${id}`);
+           const res = await axios.get(`/api/projects/all/${id}`);
            setProjects(res.data);
         } catch (error) {
           console.log(error.message);
@@ -40,7 +40,7 @@ const ProjectsAdmin = () => {
     setSearchString(value);
 
     if (value.trim() === '') {
-      axios.get(`http://127.0.0.1:5000/api/projects/all/${user?._id || 'none'}`)
+      axios.get(`/api/projects/all/${user?._id || 'none'}`)
         .then(res => setProjects(res.data))
         .catch(err => console.log(err.message));
       return;
@@ -54,7 +54,7 @@ const ProjectsAdmin = () => {
     try {
       
       if (window.confirm('Are you sure you want to delete this project?')){
-          const res = await axios.delete(`http://127.0.0.1:5000/api/projects/${id}`);
+          const res = await axios.delete(`/api/projects/${id}`);
 
           // dispatch alert
           displayAlert(dispatch, res.data.msg, 'success');

@@ -1,6 +1,6 @@
 const express = require('express');
 const registerChecks = require('../../validators/registerChecks');
-const loginChecks = require('../../validators/loginChecks')
+const loginChecks = require('../../validators/loginChecks');
 const validate = require('../../validators/validate');
 const { addUser } = require('../../controllers/register');
 const { login } =  require('../../controllers/login');
@@ -8,12 +8,12 @@ const multer = require('multer');
 
 upload = multer({storage: multer.memoryStorage()});
 
-const router = express.Router()
+const router = express.Router();
 
 // @route POST /api/auth/register
 // @desc Add user to the database
 // @access public
-router.post('/register', registerChecks, validate, addUser);
+router.post('/register', registerChecks, validate, addUser); //No UI for now
 
 
 // @route POST /api/auth/login

@@ -32,7 +32,7 @@ const AddProject = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://127.0.0.1:5000/api/projects', formData).then(() => {
+      const res = await axios.post('/api/projects', formData).then(() => {
 
           setLoading(false);
           displayAlert(dispatch, `Project has been succeesully added!`, 'success');
