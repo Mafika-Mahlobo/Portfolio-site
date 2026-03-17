@@ -18,11 +18,12 @@ app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 // Redirect unknown url to home
 app.use((req, res, next) => {
-  if (!req.path.startsWith("/api")) {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-  } else {
-    next(); 
-  }
+
+  if (req.path.startsWith("/api")) return next();
+  if (path.extname(req.path)) return next();
+
+  res.sendFile(path.join(path.join(__dirname, 'client', 'dist'), 'index.html'));
+    
 });
 
 app.listen(PORT, () => {
