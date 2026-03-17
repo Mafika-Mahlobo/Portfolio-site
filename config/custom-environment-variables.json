@@ -1,0 +1,9 @@
+{
+    "mongoConnection": "MONGO_DB_STRING",
+    "cloudName": "CLOUD_NAME",
+    "apiSecret": "API_SECRET",
+    "apiKey": "CLOUDINARY_API_KEY",
+    "jwtSecret": "JWT_SECRET",
+    "email": "EMAIL",
+    "appPin": "APP_PIN"
+}

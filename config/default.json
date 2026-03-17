@@ -1,0 +1,9 @@
+{
+    "mongoConnection": "..",
+    "cloudName": "...",
+    "apiSecret": "...",
+    "apiKey": "...",
+    "jwtSecret": "...",
+    "email": "...",
+    "appPin": "..."
+}
