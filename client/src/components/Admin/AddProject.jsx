@@ -11,8 +11,6 @@ const AddProject = () => {
   const [ githubLink, setGithubLink ] = useState('');
   const [ liveLink, setLiveLink ] = useState('');
   const [ pictures, setPictures ] = useState([]);
-  const [ loading, setLoading ] = useState(false);
-  const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   const dispatch = useDispatch();
@@ -54,7 +52,7 @@ const AddProject = () => {
 
       }
       else {
-          displayAlert(dispatch, error.message, 'danger');
+          displayAlert(dispatch, error.message ? error.message : 'The was an error processing your request', 'danger');
           console.log(error);
       }
        
