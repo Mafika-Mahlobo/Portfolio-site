@@ -64,11 +64,14 @@ const EditProject = () => {
     } catch (error) {
         
         if (error.status === 400){
+          setLoading(false);
           displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
         } else if (error.status === 403) {
+          setLoading(false);
           displayAlert(dispatch, 'Please attach a maximum of 7 pictures', 'danger');
         }
         else {
+            setLoading(false);
             displayAlert(dispatch, 'The was an error processing your request', 'danger');
         }
     }
