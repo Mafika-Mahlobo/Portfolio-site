@@ -13,6 +13,8 @@ const EditProject = () => {
   const [ liveLink, setLiveLink ] = useState('');
   const [ pictures, setPictures ] = useState([]);
   const [ loading, setLoading ] = useState(false);
+  const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -21,7 +23,7 @@ const EditProject = () => {
   formData.append('description', description);
   formData.append('githubLink', githubLink);
   formData.append('liveLink', liveLink);
-  for (let i = 0; i <= pictures.length; i++) {
+  for (let i = 0; i < pictures.length; i++) {
     formData.append('pictures', pictures[i]);
   }
 
@@ -39,9 +41,10 @@ const EditProject = () => {
       try {
         const res = await axios.get(`/api/projects/${id}`);
         setProject(res.data);
-  
+        setLoading(false);
       } catch (error) {
-        console.log(error);
+        setError('Failer to lead projects');
+        setLoading(false);
       }
     }
     fetchProject();
@@ -49,11 +52,12 @@ const EditProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     
-    setLoading(true);
+    
     try {
       const res = await axios.put(`/api/projects/${id}`, formData).then(() => {
-          setLoading(false);
+          
           displayAlert(dispatch, `The project has been successfully updated!`, 'success');
       });
     
@@ -64,27 +68,25 @@ const EditProject = () => {
     } catch (error) {
         
         if (error.status === 400){
-          setLoading(false);
+          
           displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
         } else if (error.status === 403) {
-          setLoading(false);
+          
           displayAlert(dispatch, 'Please attach a maximum of 7 pictures', 'danger');
         }
         else {
-            setLoading(false);
+            
             displayAlert(dispatch, 'The was an error processing your request', 'danger');
         }
+    } finally {
+      setSubmitting(false);
     }
   }
 
   return (
     <div className='grid grid-rows-1 gap-5 bg-linear-to-b from-gray-600 to-gray-800 p-8 justify-center items-start'>
          {
-          loading ?
-
-          <Spinner />
-
-          :
+          submitting ? <Spinner /> :
          
          <fieldset className='p-5 lg:w-lg rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Update project</legend>
