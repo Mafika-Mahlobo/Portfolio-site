@@ -49,8 +49,9 @@ const AddProject = () => {
       } else if (error.status === 403) {
         displayAlert(dispatch, 'Please attach a maximum of 7 pictures', 'danger');
 
-      }
-      else {
+      } else if (error.status === 401) {
+        displayAlert(dispatch, 'title', 'You\'ve exceeded the allowed character count (max 70)', 'danger');
+      } else {
           displayAlert(dispatch, error.message, 'danger');
           console.log(error);
       }
