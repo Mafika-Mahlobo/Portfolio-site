@@ -16,7 +16,12 @@ exports.sendMail = async (req, res) => {
         res.status(200).json({msg: 'Message sent'});
 
     } catch (error) {
-        console.log(error.message);
-        return res.status(200).json({msg: 'Oops! we ran into an issue. Contact the administrator'});
+        console.error('sendMail error:', error);
+
+        if (process.env.NODE_ENV === 'production') {
+            return res.status(500).json({msg: 'Oops! we ran into an issue. Contact the administrator'});
+        }
+
+        return res.status(500).json({msg: 'Oops! we ran into an issue. Contact the administrator', error: error.message});
     }
 }
