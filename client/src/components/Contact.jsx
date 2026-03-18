@@ -44,7 +44,8 @@ const Contact = ({bio}) => {
 
   return (
     <section id='contact' ref={ref} className={`bg-linear-to-br from-gray-800 to-gray-700 p-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-90'}`}>
-        <div className='grid grid-cols-1 md:grid-cols-2 border border-gray-500 rounded-2xl shadow-2xl shadow-gray-900 p-10'>
+        <fieldset className='grid grid-cols-1 border border-gray-500 rounded-2xl shadow-2xl shadow-gray-900 p-10'>
+            <legend className='text-xl text-green-600 font-extrabold'>Bio</legend>
             <div className='p-2 sm:p-10'>
                 <p className='text-center text-gray-300 text-md md:text-lg'>
                     {bio}
@@ -70,7 +71,7 @@ const Contact = ({bio}) => {
                     </div>
                 </form>
             </div> */}
-        </div>
+        </fieldset>
     </section>
   )
 }
