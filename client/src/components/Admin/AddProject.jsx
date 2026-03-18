@@ -31,15 +31,14 @@ const AddProject = () => {
     setSubmitting(true);
 
     try {
-      const res = await axios.post('/api/projects', formData).then(() => {
+      const res = await axios.post('/api/projects', formData);
 
-          displayAlert(dispatch, `Project has been succeesully added!`, 'success');
-      })
+      displayAlert(dispatch, `Project has been succeesully added!`, 'success');
 
       
-      if (msg === null) {
+       setTimeout(() => {
         window.location.href = '/admin/projects';
-      }
+      }, 2000);
       
 
     } catch (error) {
