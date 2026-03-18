@@ -47,6 +47,9 @@ exports.AddProject = async (req, res) => {
             
 
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({error: error.message});
+        }
         return res.status(500).json({error: error.message});
     }
 };
@@ -115,6 +118,9 @@ exports.updateProject = async (req, res) => {
         return res.status(200).json(newProject);
 
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({error: error.message});
+        }
         return res.status(500).json({error: 'project not found'});
     }
 };
