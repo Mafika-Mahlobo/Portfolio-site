@@ -51,7 +51,7 @@ const AddProject = () => {
 
       }
       else {
-          displayAlert(dispatch, 'The was an error processing your request', 'danger');
+          displayAlert(dispatch, error.message, 'danger');
           console.log(error);
       }
        
