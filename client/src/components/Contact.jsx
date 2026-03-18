@@ -50,7 +50,8 @@ const Contact = ({bio}) => {
                     {bio}
                 </p>
             </div>
-            <div className='rounded-tr-2xl rounded-br-2xl shadow-2xl shadow-gray-900 flex justify-center align-middle p-0 md:p-10'>
+            {/* Remove for for now */}
+            {/* <div className='rounded-tr-2xl rounded-br-2xl shadow-2xl shadow-gray-900 flex justify-center align-middle p-0 md:p-10'>
                 <div className={`w-max bg-green-900 p-5 md:p-15 m-10 items-center justify-center rounded-2xl md:animate-bounce text-gray-300 ${loading ? '': 'hidden'}`}>
                     <RocketLaunchIcon className='animate-pulse'/>
                      <h1 className="animate-pulse">{'Sending...'}</h1>
@@ -68,7 +69,7 @@ const Contact = ({bio}) => {
                       <button className='bg-green-700 text-white px-6 py-2 rounded-2xl m-0 w-full hover:bg-green-800 transition-colors cursor-pointer'>Leave a message</button>
                     </div>
                 </form>
-            </div>
+            </div> */}
         </div>
     </section>
   )
