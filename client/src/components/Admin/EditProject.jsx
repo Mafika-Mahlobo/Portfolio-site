@@ -68,7 +68,6 @@ const EditProject = () => {
     } catch (error) {
         
         if (error.status === 400){
-          
           displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
         } else if (error.status === 403) {
           
@@ -76,7 +75,7 @@ const EditProject = () => {
         }
         else {
             
-            displayAlert(dispatch, 'The was an error processing your request', 'danger');
+            displayAlert(dispatch,  error.message ? error.message : 'The was an error processing your request', 'danger');
         }
     } finally {
       setSubmitting(false);

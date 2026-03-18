@@ -66,11 +66,7 @@ const AddProject = () => {
   return (
     <div className='grid grid-rows-1 gap-5 bg-linear-to-b from-gray-600 to-gray-800 p-8 justify-center items-start'>
         {
-          loading ?
-
-          <Spinner />
-
-          :
+          submitting ? <Spinner /> :
       
          <fieldset className='p-5 lg:w-lg rounded-lg flex flex-col justify-center shadow-2xl shadow-gray-900'>
             <legend className='text-xl text-green-600 font-extrabold'>Add project</legend>
