@@ -19,7 +19,7 @@ const ProjectItem = ({ title, description, git, live, pictures}) => {
   return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 rounded-3xl shadow-lg shadow-gray-900 bg-transparent border border-gray-500 mt-5 max-w-7xl">
             <div className='flex flex-col justify-center items-center p-0'>
-                <h2 className='text-center text-gray-400 text-2xl font-extrabold mb-4'>{title}</h2>
+                <h2 className='text-center text-gray-300 text-2xl font-extrabold mb-4'>{title}</h2>
                 <img src={pictures[currentIndex]?.url} alt="Project screenshot" className='w-min h-max max-h-80 max-w-full object-center p-0 m-2 sm:m-6 rounded-2xl shadow-4xl shadow-gray-900'/>
             </div>
             <div className='rounded-tr-3xl rounded-br-3xl shadow-2xl shadow-gray-900 p-6 sm:p-10 text-center w-full h-full flex flex-col justify-center items-center'>

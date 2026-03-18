@@ -12,6 +12,8 @@ const AddProject = () => {
   const [ liveLink, setLiveLink ] = useState('');
   const [ pictures, setPictures ] = useState([]);
   const [ loading, setLoading ] = useState(false);
+  const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const dispatch = useDispatch();
   const { msg } = useSelector(state => state.alert);
@@ -28,13 +30,11 @@ const AddProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setLoading(true);
+    setSubmitting(true);
 
     try {
       const res = await axios.post('/api/projects', formData).then(() => {
 
-          setLoading(false);
           displayAlert(dispatch, `Project has been succeesully added!`, 'success');
       })
 
@@ -46,7 +46,6 @@ const AddProject = () => {
 
     } catch (error) {
       
-      setLoading(false);
       if (error.status === 400){
         displayAlert(dispatch, 'Please upload at at least one picture', 'danger');
 
@@ -59,6 +58,8 @@ const AddProject = () => {
           console.log(error);
       }
        
+    } finally {
+      setSubmitting(false);
     }
   }
 
