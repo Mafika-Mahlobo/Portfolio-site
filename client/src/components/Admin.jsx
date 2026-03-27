@@ -9,6 +9,7 @@ import {
   useLocation,
   Outlet,
 } from 'react-router-dom';
+import Spinner from '../utils/Spinner';
 
 
 
@@ -136,23 +137,23 @@ const Admin = () => {
         </header>
 
         <main className='flex-1 min-h-0 grid grid-rows'>
-          {
-            user ? 
+          {loading ? (
+            <div className='place-self-center'>
+              <Spinner />
+            </div>
+          ) : user && isAuthenticated ? (
             <Outlet />
-            :
+          ) : (
             <div className='text-gray-300 text-center p-5 bg-gray-700 flex flex-col justify-center items-center'>
-                <p>Your session has expired</p>
-
-                <button
-                  onClick={handleLogout}
-                  className='flex items-center gap-2 hover:text-white cursor-pointer mt-2'
-                >
-                
-                  <span className='p-5 bg-green-700 rounded-2xl hover:bg-gray-900 transform transition-transform duration-100'>Back to login page</span>
-                </button>
-          </div>
-          }
-          
+              <p>Your session has expired</p>
+              <button
+                onClick={handleLogout}
+                className='flex items-center gap-2 hover:text-white cursor-pointer mt-2'
+              >
+                <span className='p-5 bg-green-700 rounded-2xl hover:bg-gray-900 transform transition-transform duration-100'>Back to login page</span>
+              </button>
+            </div>
+          )}
         </main>
       </div>
     </section>
