@@ -1,9 +1,9 @@
 {
-    "mongoConnection": "mongodb+srv://Mafika:keBAfMPNk7iT8Jwj@portfoliodb.bhhmvjw.mongodb.net/",
-    "cloudName": "dbc01ag8n",
-    "apiSecret": "oqSBgkjArmu03aLsfoAwwLVAhQU",
-    "apiKey": "283779875573769",
-    "jwtSecret": "MyJwtSecretKey___f",
-    "email": "rudolphmafika@gmail.com",
-    "appPin": "hlag ogzt xbmu jkny"
+    "mongoConnection": "..",
+    "cloudName": "...",
+    "apiSecret": "...",
+    "apiKey": "...",
+    "jwtSecret": "...",
+    "email": "...",
+    "appPin": "..."
 }
