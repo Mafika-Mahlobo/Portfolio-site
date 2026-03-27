@@ -136,7 +136,7 @@ const Admin = () => {
           </div>
         </header>
 
-        <main className='flex-1 min-h-0 grid grid-rows'>
+        <main className='flex-1 min-h-0 grid grid-rows bg-linear-to-b from-gray-600 to-gray-800'> 
           {loading ? (
             <div className='place-self-center'>
               <Spinner />
